@@ -9,6 +9,7 @@
    -->
   <typeAliases>
     <typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
+    <typeAlias type="com.sist.vo.GoodsVO" alias="GoodsVO"/>
   </typeAliases>
   <environments default="develpoment">
     <environment id="develpoment">
@@ -24,5 +25,6 @@
   <mappers>
     <mapper resource="com/sist/mapper/food-mapper.xml"/>
     <mapper resource="com/sist/mapper/main-mapper.xml"/>
+    <mapper resource="com/sist/mapper/goods-mapper.xml"/>
   </mappers>
 </configuration>
