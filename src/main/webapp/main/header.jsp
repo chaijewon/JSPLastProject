@@ -54,7 +54,7 @@
                 <!-- Logo Area Start -->
                 <div class="col-12">
                     <div class="logo_area text-center">
-                        <a href="index.html" class="yummy-logo">Food & Recipe & Goods</a>
+                        <a href="../main/main.do" class="yummy-logo">Food & Recipe & Goods</a>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                         <div class="collapse navbar-collapse justify-content-center" id="yummyfood-nav">
                             <ul class="navbar-nav" id="yummy-nav">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="../main/main.do">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
@@ -94,9 +94,9 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="index.html">레시피 목록</a>
+                                        <a class="dropdown-item" href="../recipe/list.do">레시피 목록</a>
                                         
-                                        <a class="dropdown-item" href="archive.html">쉐프</a>
+                                        <a class="dropdown-item" href="../recipe/chef_list.do">쉐프</a>
                                  
                                         <a class="dropdown-item" href="single.html">레시피 등록</a>
                                         <%-- 네이버 카페 / 블로그 : 형태소 분석 --%>
