@@ -26,11 +26,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+       <!--   Instagram Item 
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/2.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -42,11 +42,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/3.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -58,11 +58,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/4.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -74,11 +74,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/5.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -90,11 +90,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/6.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -106,11 +106,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/1.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -122,11 +122,11 @@
             </div>
         </div>
 
-        <!-- Instagram Item -->
+        Instagram Item
         <div class="instagram_gallery_item">
-            <!-- Instagram Thumb -->
+            Instagram Thumb
             <img src="../img/instagram-img/2.jpg" alt="">
-            <!-- Hover -->
+            Hover
             <div class="hover_overlay">
                 <div class="yummy-table">
                     <div class="yummy-table-cell">
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </body>
