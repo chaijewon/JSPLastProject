@@ -14,16 +14,16 @@
   WHERE ROWNUM=1
  </select>
  <select id="mainHitTop4" resultType="FoodVO">
-  SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,rownum
-  FROM (SELECT fno,poster,name,theme,hit,likecount,replycount,type,address
+  SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,content,rownum
+  FROM (SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,content
     FROM menupan_food
     ORDER BY hit DESC
   )
   WHERE ROWNUM&lt;=4
  </select>
  <select id="mainLikeTop4" resultType="FoodVO">
-  SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,rownum
-  FROM (SELECT fno,poster,name,theme,hit,likecount,replycount,type,address
+  SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,content,rownum
+  FROM (SELECT fno,poster,name,theme,hit,likecount,replycount,type,address,content
     FROM menupan_food
     ORDER BY likecount DESC
   )

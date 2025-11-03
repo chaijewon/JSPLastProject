@@ -189,7 +189,7 @@
                                     <a href="#">
                                         <h4 class="post-headline">${vo.name }</h4>
                                     </a>
-                                    <p>${vo.theme }</p>
+                                    <p>${vo.content }</p>
                                     <a href="#" class="read-more">더보기</a>
                                 </div>
                             </div>
