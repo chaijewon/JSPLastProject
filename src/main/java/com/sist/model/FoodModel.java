@@ -90,8 +90,10 @@ public class FoodModel {
 		   HttpServletResponse response)
    {
 	   String fno=request.getParameter("fno");
+	   String page=request.getParameter("page");
 	   FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
 	   request.setAttribute("vo", vo);
+	   request.setAttribute("page", page);
 	   // String food_detail(int fno)
 	   // String food_detail(FoodVO vo)
 	   // => 스프링 : 전송 객체 / 사용자 요청값 Model
@@ -105,7 +107,7 @@ public class FoodModel {
 		   HttpServletResponse response)
    {
 	   String fno=request.getParameter("fno");
-	   
-	   return "redirect:../food/detail.do?fno="+fno;
+	   String page=request.getParameter("page");
+	   return "redirect:../food/detail.do?fno="+fno+"&page="+page;
    }
 }

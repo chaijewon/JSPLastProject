@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,112 +48,26 @@
             <div class="row justify-content-center">
              <div class="col-12 col-lg-8">
                <div class="row no-gutters">
-                  <!-- Related Post Area -->
+                    <!-- Related Post Area -->
                     <div class="col-12 col-sm-12">
                             <div class="related-post-area section_padding_50">
                                 
                                 <div class="related-post-slider owl-carousel">
                                     <!-- Single Related Post-->
+                                    <c:forTokens items="${vo.images }" delims=","
+                                      var="img"
+                                    >
                                     <div class="single-post">
                                         <!-- Post Thumb -->
                                         <div class="post-thumb">
-                                            <img src="../img/blog-img/15.jpg" alt="">
+                                            <img src="${img }" alt="">
                                         </div>
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <div class="post-meta d-flex">
-                                                <div class="post-author-date-area d-flex">
-                                                    <!-- Post Author -->
-                                                    <div class="post-author">
-                                                        <a href="#">By Marian</a>
-                                                    </div>
-                                                    <!-- Post Date -->
-                                                    <div class="post-date">
-                                                        <a href="#">May 19, 2017</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <h6>The Top Breakfast And Brunch Spots In Hove</h6>
-                                            </a>
-                                        </div>
+                                      
                                     </div>
-                                    <!-- Single Related Post-->
-                                    <div class="single-post">
-                                        <!-- Post Thumb -->
-                                        <div class="post-thumb">
-                                            <img src="../img/blog-img/5.jpg" alt="">
-                                        </div>
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <div class="post-meta d-flex">
-                                                <div class="post-author-date-area d-flex">
-                                                    <!-- Post Author -->
-                                                    <div class="post-author">
-                                                        <a href="#">By Marian</a>
-                                                    </div>
-                                                    <!-- Post Date -->
-                                                    <div class="post-date">
-                                                        <a href="#">May 19, 2017</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <h6>The Top Breakfast And Brunch Spots In Hove</h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Related Post-->
-                                    <div class="single-post">
-                                        <!-- Post Thumb -->
-                                        <div class="post-thumb">
-                                            <img src="../img/blog-img/16.jpg" alt="">
-                                        </div>
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <div class="post-meta d-flex">
-                                                <div class="post-author-date-area d-flex">
-                                                    <!-- Post Author -->
-                                                    <div class="post-author">
-                                                        <a href="#">By Marian</a>
-                                                    </div>
-                                                    <!-- Post Date -->
-                                                    <div class="post-date">
-                                                        <a href="#">May 19, 2017</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <h6>The Top Breakfast And Brunch Spots In Hove</h6>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- Single Related Post-->
-                                    <div class="single-post">
-                                        <!-- Post Thumb -->
-                                        <div class="post-thumb">
-                                            <img src="../img/blog-img/5.jpg" alt="">
-                                        </div>
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <div class="post-meta d-flex">
-                                                <div class="post-author-date-area d-flex">
-                                                    <!-- Post Author -->
-                                                    <div class="post-author">
-                                                        <a href="#">By Marian</a>
-                                                    </div>
-                                                    <!-- Post Date -->
-                                                    <div class="post-date">
-                                                        <a href="#">May 19, 2017</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="#">
-                                                <h6>The Top Breakfast And Brunch Spots In Hove</h6>
-                                            </a>
-                                        </div>
-                                    </div>
+                                 
+                                    </c:forTokens>
                                 </div>
+                                
                              </div>
                            </div>  
                   
@@ -203,7 +118,7 @@
 	                  <a href="#" class="btn btn-xs btn-danger">좋아요</a>
 	                  <a href="#" class="btn btn-xs btn-success">찜하기</a>
 	                  <a href="#" class="btn btn-xs btn-info">예약하기</a>
-	                  <a href="#" class="btn btn-xs btn-warning">목록</a>
+	                  <a href="../food/list.do?page=${page }" class="btn btn-xs btn-warning">목록</a>
 	                 </td>
 	                </tr>
 	              </table>
