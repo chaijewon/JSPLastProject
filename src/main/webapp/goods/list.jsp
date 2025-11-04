@@ -58,7 +58,7 @@
                                     </div>
                                     <!-- Post Date -->
                                     <div class="post-date">
-                                        <a href="#">${vo.goods_discount }%</a>
+                                        <a href="#">할인:${vo.goods_discount }%</a>
                                     </div>
                                 </div>
                                 <!-- Post Comment & Share Area -->

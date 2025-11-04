@@ -213,7 +213,7 @@
                                 <h6>오늘의 쉐프</h6>
                             </div>
                             <div class="about-me-widget-thumb">
-                                <img src="${cvo.poster }" alt="">
+                                <img src="${cvo.poster }">
                             </div>
                             <h4 class="font-shadow-into-light">${cvo.chef }</h4>
                             
@@ -229,7 +229,7 @@
                             <!-- Single Popular Post -->
                             <c:forEach var="rvo" items="${rList }">
                              <div class="single-populer-post d-flex">
-                                <img src="${rvo.poster }" alt="">
+                                <img src="${rvo.poster }" style="width: 120px;height: 120px">
                                 <div class="post-content">
                                     <a href="#">
                                         <h6>${rvo.title}</h6>
