@@ -75,6 +75,18 @@ public class RecipeDAO {
 	   session.close();
 	   return total;
    }
+   /*
+    *   <select id="recipeCount" resultType="int">
+         SELECT COUNT(*) FROM recipe
+       </select>
+    */
+   public static int recipeCount()
+   {
+	   SqlSession session=ssf.openSession();
+	   int count=session.selectOne("recipeCount");
+	   session.close();
+	   return count;
+   }
    // 쉐프 상세보기 
    // 레시피 상세보기
    // 레시피 등록 ****

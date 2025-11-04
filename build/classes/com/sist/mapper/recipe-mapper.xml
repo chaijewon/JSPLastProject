@@ -30,4 +30,7 @@
     SELECT CEIL(COUNT(*)/12.0)
     FROM recipe
   </select>
+  <select id="recipeCount" resultType="int">
+    SELECT COUNT(*) FROM recipe
+  </select>
 </mapper>

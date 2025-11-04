@@ -80,8 +80,10 @@ public class RecipeModel {
 	   if(endPage>totalpage)
 		   endPage=totalpage;
 	   
+	   int count=RecipeDAO.recipeCount();
 	   // 브라우저 전송 
 	   request.setAttribute("list", list);
+	   request.setAttribute("count", count);
 	   
 	   request.setAttribute("curpage", curpage);
 	   request.setAttribute("totalpage", totalpage);
@@ -94,4 +96,5 @@ public class RecipeModel {
 	   return "../main/main.jsp";
    }
    // 상세보기 
+   
 }
