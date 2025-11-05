@@ -96,6 +96,12 @@ public class BoardModel {
    public String board_detail(HttpServletRequest request,
 		   HttpServletResponse response)
    {
+	   String no=request.getParameter("no");
+	   String page=request.getParameter("page");
+	   BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
+	   
+	   request.setAttribute("vo", vo);
+	   request.setAttribute("page", page);
 	   request.setAttribute("main_jsp", "../board/detail.jsp");
 	   return "../main/main.jsp";
    }

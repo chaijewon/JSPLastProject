@@ -67,7 +67,8 @@
 	                <c:forEach var="vo" items="${list }">
 	                 <tr>
 	                  <td class="text-center" width="10%">${count}</td>
-	                  <td width="45%">${vo.subject }
+	                  <td width="45%">
+	                   <a href="../board/detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a>
 	                   <c:if test="${today==vo.dbday }">
 	                    &nbsp;<sup><img src="../board/images/new.gif"></sup>
 	                   </c:if>
@@ -89,7 +90,9 @@
 	                  <input type=button class="btn-sm btn-pink" value="검색">
 	                 </td>
 	                 <td class="text-right">
-	                  0 page / 0 pages 
+	                  <a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-pink">이전</a>
+	                  ${curpage } page / ${totalpage } pages
+	                  <a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-mint">다음</a> 
 	                 </td>
 	                </tr>
 	              </table>

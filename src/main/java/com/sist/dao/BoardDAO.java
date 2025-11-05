@@ -95,4 +95,37 @@ public class BoardDAO {
 		  ex.printStackTrace();
 	  }
   }
+  /*
+   *   <update id="boardHitIncrement" parameterType="int">
+		    UPDATE mvcBoard SET
+		    hit=hit+1 
+		    WHERE no=#{no}
+		   </update>
+		   <select id="boardDetailData" resultType="BoardVO"
+		    parameterType="int"
+		   >
+		     SELECT no,name,subject,content,hit,
+		            TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,
+		            replycount
+		     FROM mvcBoard
+		     WHERE no=#{no}
+		   </select>
+   */
+  public static BoardVO boardDetailData(int no)
+  {
+	  BoardVO vo=null;
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  session.update("boardHitIncrement",no);
+		  session.commit();
+		  vo=session.selectOne("boardDetailData",no);
+		  session.close();
+		  
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return vo;
+  }
 }
