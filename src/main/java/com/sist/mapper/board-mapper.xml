@@ -74,8 +74,16 @@
     WHERE no=#{no}
    </delete>
    <!-- 
-      수정 
+      수정 : CRUD 
+            Create READ Update Delete
+              |     |
+             Insert Select
     -->
+   <update id="boardUpdate" parameterType="BoardVO">
+    UPDATE mvcBoard SET 
+    name=#{name},subject=#{subject},content=#{content}
+    WHERE no=#{no}
+   </update>
 </mapper>
 
 

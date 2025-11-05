@@ -99,7 +99,12 @@ public class BoardModel {
    {
 	   String no=request.getParameter("no");
 	   String page=request.getParameter("page");
-	   BoardVO vo=BoardDAO.boardDetailData(Integer.parseInt(no));
+	   String type=request.getParameter("type");
+	   if(type==null)
+		   type="0";
+	   BoardVO vo=
+		 BoardDAO.boardDetailData(Integer.parseInt(no),
+				 Integer.parseInt(type));
 	   
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("page", page);
@@ -137,10 +142,60 @@ public class BoardModel {
 		   HttpServletResponse response)
    {
 	   String no=request.getParameter("no");
+	   String page=request.getParameter("page");
 	   BoardVO vo=
 			BoardDAO.boardUpdateData(Integer.parseInt(no));
 	   request.setAttribute("vo", vo);
+	   request.setAttribute("page", page);
 	   request.setAttribute("main_jsp", "../board/update.jsp");
 	   return "../main/main.jsp";
    }
+   @RequestMapping("board/pwdcheck.do")
+   public void board_pwdcheck(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   String no=request.getParameter("no");
+	   String pwd=request.getParameter("pwd");
+	   String res=
+		BoardDAO.boardPwdCheck(Integer.parseInt(no), pwd);
+	   try
+	   {
+		   response.setContentType("text/plain;charset=UTF-8");
+		   PrintWriter out=response.getWriter();
+		   out.write(res); // VO=>{}, List=>[] => JSON
+	   }catch(Exception ex) {}
+   }
+   @RequestMapping("board/update_ok.do")
+   public void board_update_ok(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	
+	   try
+	   {
+		   request.setCharacterEncoding("UTF-8");
+	   }catch(Exception ex) {}
+	   
+	   String name=request.getParameter("name");
+	   String subject=request.getParameter("subject");
+	   String content=request.getParameter("content");
+	   String pwd=request.getParameter("pwd");
+	   String no=request.getParameter("no");
+	   
+	   BoardVO vo=new BoardVO();
+	   vo.setName(name);
+	   vo.setSubject(subject);
+	   vo.setContent(content);
+	   vo.setPwd(pwd);
+	   vo.setNo(Integer.parseInt(no));
+	   
+	   String res=BoardDAO.boardUpdate(vo);
+	   
+	   try
+	   {
+		   response.setContentType("text/plain;charset=UTF-8");
+		   PrintWriter out=response.getWriter();
+		   out.write(res); // VO=>{}, List=>[] => JSON
+	   }catch(Exception ex) {}
+   }
+   
 }

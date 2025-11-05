@@ -111,14 +111,17 @@ public class BoardDAO {
 		     WHERE no=#{no}
 		   </select>
    */
-  public static BoardVO boardDetailData(int no)
+  public static BoardVO boardDetailData(int no,int type)
   {
 	  BoardVO vo=null;
 	  try
 	  {
 		  SqlSession session=ssf.openSession();
-		  session.update("boardHitIncrement",no);
-		  session.commit();
+		  if(type==0)
+		  {
+		    session.update("boardHitIncrement",no);
+		    session.commit();
+		  }
 		  vo=session.selectOne("boardDetailData",no);
 		  session.close();
 		  
@@ -175,5 +178,55 @@ public class BoardDAO {
 		  ex.printStackTrace();
 	  }
 	  return vo;
+  }
+  /*
+   *    Map map=new HashMap();
+   *    map.put("boardGetPassword","SELECT~");
+   *    map.put("boardListData","SELECT~");
+   *    map.put("boardInsert","INSERT~");
+   *    
+   */
+  public static String boardPwdCheck(int no,String pwd)
+  {
+	  String res="no";
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  String db_pwd=session.selectOne("boardGetPassword",no);
+		  if(db_pwd.equals(pwd))
+		  {
+			  res="yes";
+		  }
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return res;
+  }
+  /*
+   *   <update id="boardUpdate" parameterType="BoardVO">
+	    UPDATE mvcBoard SET 
+	    name=#{name},subject=#{subject},content=#{content}
+	    WHERE no=#{no}
+	   </update>
+   
+   */
+  public static String boardUpdate(BoardVO vo)
+  {
+	  String res="";
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  session.update("boardUpdate",vo);
+		  session.commit();
+		  session.close();
+		  res="yes";
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+		  res=ex.getMessage();
+	  }
+	  return res;
   }
 }
