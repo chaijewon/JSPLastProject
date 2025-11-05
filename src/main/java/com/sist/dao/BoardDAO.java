@@ -128,4 +128,52 @@ public class BoardDAO {
 	  }
 	  return vo;
   }
+  /*
+   *    <select id="boardGetPassword" resultType="string"
+		    parameterType="int"
+		   >
+		    SELECT pwd FROM mvcBoard
+		    WHERE no=#{no}
+		   </select>
+		   <delete id="boardDelete" parameterType="int">
+		    DELETE FROM mvcBoard
+		    WHERE no=#{no}
+		   </delete>
+   */
+  public static String boardDelete(int no,String pwd)
+  {
+	  String res="no";
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  String db_pwd=session.selectOne("boardGetPassword",no);
+		  if(db_pwd.equals(pwd))
+		  {
+			   // 댓글 => 삭제 
+			   session.delete("boardDelete",no);
+			   session.commit();
+			   res="yes";
+		  }
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return res;
+  }
+  public static BoardVO boardUpdateData(int no)
+  {
+	  BoardVO vo=null;
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  vo=session.selectOne("boardDetailData",no);
+		  session.close();
+		  
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return vo;
+  }
 }

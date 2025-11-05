@@ -60,6 +60,22 @@
      FROM mvcBoard
      WHERE no=#{no}
    </select>
+   <!-- 
+      삭제 
+    -->
+   <select id="boardGetPassword" resultType="string"
+    parameterType="int"
+   >
+    SELECT pwd FROM mvcBoard
+    WHERE no=#{no}
+   </select>
+   <delete id="boardDelete" parameterType="int">
+    DELETE FROM mvcBoard
+    WHERE no=#{no}
+   </delete>
+   <!-- 
+      수정 
+    -->
 </mapper>
 
 

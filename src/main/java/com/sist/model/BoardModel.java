@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -103,6 +104,43 @@ public class BoardModel {
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("page", page);
 	   request.setAttribute("main_jsp", "../board/detail.jsp");
+	   return "../main/main.jsp";
+   }
+   /*
+    *  Spring 
+    *  ------
+    *  | String : 화면 변경 
+    *             forward / redirect
+    *    void : JSON
+    */
+   @RequestMapping("board/delete.do")
+   public void board_delete(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   //1. 사용자 전송값 data:{"no":no,"pwd":pwd}
+	   //2. => ?no=1&pwd=1234
+	   //vue => axios => params:{"no":no,"pwd":pwd}
+	   String no=request.getParameter("no");
+	   String pwd=request.getParameter("pwd");
+	   // => DAO로 전송 => 결과값 
+	   String res=
+		 BoardDAO.boardDelete(Integer.parseInt(no), pwd);
+	   try
+	   {
+		   response.setContentType("text/plain;charset=UTF-8");
+		   PrintWriter out=response.getWriter();
+		   out.write(res);
+	   }catch(Exception ex) {}
+   }
+   @RequestMapping("board/update.do")
+   public String board_update(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   String no=request.getParameter("no");
+	   BoardVO vo=
+			BoardDAO.boardUpdateData(Integer.parseInt(no));
+	   request.setAttribute("vo", vo);
+	   request.setAttribute("main_jsp", "../board/update.jsp");
 	   return "../main/main.jsp";
    }
 }
