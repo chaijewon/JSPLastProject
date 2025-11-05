@@ -12,6 +12,7 @@
     <link rel="icon" href="../img/core-img/favicon.ico">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/responsive/responsive.css" rel="stylesheet">
+   
 </head>
 
 <body>
@@ -19,7 +20,7 @@
         <div class="yummy-load"></div>
     </div>
     <div id="pattern-switcher">
-        실시간 상담
+        <jsp:include page="../chat/chat.do"></jsp:include>
     </div>
     <div id="patter-close">
         <i class="fa fa-times" aria-hidden="true"></i>

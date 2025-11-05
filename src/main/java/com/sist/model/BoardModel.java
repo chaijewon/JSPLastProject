@@ -2,10 +2,15 @@ package com.sist.model;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+/*
+ *    header.jsp => link
+ *    mapper.xml => SQL
+ *    DAO => 처리 
+ *    Model => 브라우저 전송 
+ *    해당 JSP에서 화면 출력 
+ */
 @Controller
 public class BoardModel {
    @RequestMapping("board/list.do")

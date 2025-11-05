@@ -73,7 +73,7 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="index.html">회원가입</a>
+                                        <a class="dropdown-item" href="../member/join.do">회원가입</a>
                                         <%-- 아이디 찾기 : RPAD --%>
                                         <a class="dropdown-item" href="archive.html">아이디찾기</a>
                                         <%-- JavaMail 라이브러리 --%>
@@ -132,7 +132,7 @@
                                     <a class="nav-link" href="#">빠른 예약</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">실시간채팅</a>
+                                    <a class="nav-link" href="../chat/chat.do">실시간채팅</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="archive.html">마이페이지</a>

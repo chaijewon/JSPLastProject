@@ -38,7 +38,7 @@
                         <img src="../img/catagory-img/3.jpg" alt="">
                         <div class="catagory-title">
                             <a href="#">
-                                <h5>오늘의 신상품</h5>
+                                <h5>오늘의 동영상</h5>
                             </a>
                         </div>
                     </div>
