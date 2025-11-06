@@ -110,6 +110,7 @@ button:hover {
     <button id="checkBtn" type="button">중복확인</button>
   </div>
   <div id="message" class="message"></div>
+  <button id="okBtn" type="button">확인</button>
 </div>
 
 
