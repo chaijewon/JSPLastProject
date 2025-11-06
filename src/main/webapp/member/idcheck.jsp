@@ -108,7 +108,47 @@ $(function(){
 		parent.frm.id.value=id
 		parent.Shadowbox.close()
 	})
+	
+	$('#checkBtn').click(function(){
+		let id=$('#userid').val()
+		//alert(id)
+		if(id.trim()=="")
+		{
+			$('#message').text("아이디 입력하세요")
+			$('#message').attr("class","message error")
+			$('#message').show()
+			return
+		}
+		// 서버 연동 
+		$.ajax({
+			type:'post',
+			url:'../member/idcheck_ok.do',
+			data:{"id":id},
+			success:function(result)
+			{
+				if(result==0)
+				{
+					$('#message').text(id+ '는(은) 사용가능한 아이디입니다')
+					$('#message').attr("class","message success")
+					$('#message').show()
+					$('#okBtn').show()
+				}
+				else
+				{
+					$('#message').text(id+'는(은) 이미 사용중인 아이디입니다')
+					$('#message').attr("class","message error")
+					$('#message').show()
+					$('#okBtn').hide()
+				}
+			},
+			error:function(err)
+			{
+				console.log(err)
+			}
+		})
+	})
 })
+
 </script>
 </head>
 <body>
@@ -120,7 +160,7 @@ $(function(){
     <button id="checkBtn" type="button">중복확인</button>
   </div>
   <div id="message" class="message"></div>
-  <button id="okBtn" type="button">확인</button>
+  <button id="okBtn" type="button" style="display:none">확인</button>
 </div>
 
 

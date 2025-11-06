@@ -41,6 +41,52 @@ $(function(){
 			}
 		}).open()
 	})
+	
+	$('#joinBtn').click(function(){
+		let id=$('#join_id').val()
+		if(id.trim()==="")
+		{
+			alert("아이디 중복체크를 하세요")
+			return
+		}
+		let pwd1=$('#pwd1').val()
+		if(pwd1.trim()==="")
+		{
+			$('#pwd1').focus()
+			return
+		}
+		let pwd2=$('#pwd2').val()
+		if(pwd1!==pwd2)
+		{
+			alert("비밀번호를 틀립니다")
+			$('#pwd2').val("")
+			$('#pwd2').focus()
+			return
+		}
+		let name=$('#name').val()
+		if(name.trim()==="")
+		{
+			$('#name').focus()
+			return
+		}
+		
+		let day=$('#birthday').val()
+		if(day.trim()==="")
+		{
+			alert("생년월일을 선택하세요")
+			return
+		}
+		
+		let post=$('#post').val()
+		if(post.trim()==="")
+		{
+		   alert("우편번호 검색을 하세요")
+		   return
+		}
+		
+		// Model로 전송 
+		$('#frm').submit()
+	})
 })
 </script>
 </head>
@@ -81,7 +127,7 @@ $(function(){
 			      <span class="glyphicon glyphicon-leaf"></span>
 			    </div>
 			    <div class="panel-body">
-			     <form name="frm">
+			     <form id="frm" name="frm" method="post" action="../member/join_ok.do">
 			      <table class="table table-bordered table-hover">
 			        <tr>
 			          <th class="text-center" width="20%">ID</th>
@@ -118,7 +164,7 @@ $(function(){
 			
 			        <tr>
 			          <th class="text-center">생년월일</th>
-			          <td><input type="date" name="birthday" class="form-control input-sm"></td>
+			          <td><input type="date" name="birthday"  id="birthday" class="form-control input-sm"></td>
 			        </tr>
 			
 			        <tr>
