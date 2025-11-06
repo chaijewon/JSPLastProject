@@ -30,5 +30,6 @@
     <mapper resource="com/sist/mapper/goods-mapper.xml"/>
     <mapper resource="com/sist/mapper/recipe-mapper.xml"/>
     <mapper resource="com/sist/mapper/board-mapper.xml"/>
+    <mapper resource="com/sist/mapper/member-mapper.xml"/>
   </mappers>
 </configuration>

@@ -6,6 +6,13 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.sist.commons.*;
 import com.sist.vo.*;
+/*
+ *    1. JSP => header.jsp링크 
+ *    2. mapper.xml
+ *    3. DAO 
+ *    4. Model
+ *    5. JSP 
+ */
 public class BoardDAO {
   private static SqlSessionFactory ssf;
   static
