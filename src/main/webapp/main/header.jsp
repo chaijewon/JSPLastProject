@@ -136,26 +136,29 @@ $(function(){
                                 <li class="nav-item active">
                                     <a class="nav-link" href="../main/main.do">Home <span class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
-                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="../member/join.do">회원가입</a>
-                                        <%-- 아이디 찾기 : RPAD --%>
-                                        <a class="dropdown-item" href="archive.html">아이디찾기</a>
-                                        <%-- JavaMail 라이브러리 --%>
-                                        <a class="dropdown-item" href="single.html">비밀번호찾기</a>
-                                    </div>
-                                </li>
+                                <c:if test="${sessionScope.id==null }">
+	                                <li class="nav-item dropdown">
+	                                    <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">회원</a>
+	                                    <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+	                                        <a class="dropdown-item" href="../member/join.do">회원가입</a>
+	                                        <%-- 아이디 찾기 : RPAD --%>
+	                                        <a class="dropdown-item" href="archive.html">아이디찾기</a>
+	                                        <%-- JavaMail 라이브러리 --%>
+	                                        <a class="dropdown-item" href="single.html">비밀번호찾기</a>
+	                                    </div>
+	                                </li>
+                                </c:if>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">맛집</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
                                         <a class="dropdown-item" href="../food/list.do">맛집 목록</a>
                                         <%-- 지도 이용 --%>
                                         <a class="dropdown-item" href="archive.html">맛집 찾기</a>
-                                 
-                                        <a class="dropdown-item" href="single.html">맛집 예약</a>
+                                        <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
+                                         <a class="dropdown-item" href="single.html">맛집 예약</a>
                                         <%-- 네이버 카페 / 블로그 : 형태소 분석 --%>
-                                        <a class="dropdown-item" href="single.html">맛집 추천</a>
+                                         <a class="dropdown-item" href="single.html">맛집 추천</a>
+                                        </c:if>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -164,8 +167,9 @@ $(function(){
                                         <a class="dropdown-item" href="../recipe/list.do">레시피 목록</a>
                                         
                                         <a class="dropdown-item" href="../recipe/chef_list.do">쉐프</a>
-                                 
-                                        <a class="dropdown-item" href="single.html">레시피 등록</a>
+                                        <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
+                                         <a class="dropdown-item" href="single.html">레시피 등록</a>
+                                        </c:if>
                                         <%-- 네이버 카페 / 블로그 : 형태소 분석 --%>
                                         <a class="dropdown-item" href="single.html">레시피 검색</a>
                                     </div>
@@ -188,21 +192,33 @@ $(function(){
                                         <a class="dropdown-item" href="index.html">공지사항</a>
                                         <%-- 지도 이용 --%>
                                         <a class="dropdown-item" href="../board/list.do">자유게시판</a>
-                                 
+                                        <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
                                         <a class="dropdown-item" href="single.html">묻고답하기</a>
                                         <%-- 네이버 카페 / 블로그 : 형태소 분석 --%>
                                         <a class="dropdown-item" href="single.html">후기게시판</a>
+                                        </c:if>
                                     </div>
                                 </li>
+                                <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">빠른 예약</a>
                                 </li>
+                                </c:if>
+                                <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
                                 <li class="nav-item">
                                     <a class="nav-link" href="../chat/chat.do">실시간채팅</a>
                                 </li>
+                                </c:if>
+                                <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
                                 <li class="nav-item">
                                     <a class="nav-link" href="archive.html">마이페이지</a>
                                 </li>
+                                </c:if>
+                                <c:if test="${sessionScope.id!=null && sessionScope.admin=='y' }">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="archive.html">관리자페이지</a>
+                                </li>
+                                </c:if>
                                 
                             </ul>
                         </div>
