@@ -1,11 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%--
+    session.setAttribute("id", "admin");
+    session.setAttribute("name", "박문수");
+    session.setAttribute("admin", "y");
+--%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	// vue => mounted()
+	$('#logBtn').click(function(){
+		let id=$('#id').val()
+		if(id.trim()==="")
+		{
+			$('#id').focus()
+			return
+		}
+		let pwd=$('#pwd').val()
+		if(pwd.trim()==="")
+		{
+			$('#pwd').focus()
+			return
+		}
+		
+		// 서버로 전송 => 결과값 받기 => Ajax (Vue,React)
+		// JSON => XML을 대체 
+		// 자바 => XML을 대체 (어노테이션)
+		$.ajax({
+			type:'post',
+			url:'../member/login.do',
+			data:{"id":id,"pwd":pwd},
+			success:function(result)
+			{
+				if(result==="NOID")
+				{
+					alert("아이디가 존재하지 않습니다")
+					$('#id').val("")
+					$('#pwd').val("")
+					$('#id').focus()
+				}
+				else if(result==="NOPWD")
+				{
+					alert("비밀번호가 틀립니다")
+					$('#pwd').val("")
+					$('#pwd').focus()
+				}
+				else if(result==="OK")
+				{
+					location.href="../main/main.do"
+				}
+			},
+			error:function(err)
+			{
+				console.log(err)
+			}
+		})
+	})
+})
+</script>
 </head>
 <body>
 <!-- ****** Top Header Area Start ****** -->
@@ -26,19 +85,26 @@
                 <div class="col-7 col-sm-6">
                     <div class="signup-search-area d-flex align-items-center justify-content-end">
                         <div class="login_register_area d-flex">
-                            <div class="login">
-                                <form action="#" method="post">
+                            <%-- session.getAttribute("id") --%>
+                            <c:if test="${sessionScope.id==null }">
+                             <div class="login">
+                         
                                  <input type="text" name="id" id="id" placeholder="아이디 입력" class="input-sm">
-                                 <input type="text" name="pwd" id="pwd" placeholder="비밀번호 입력" class="input-sm">
-                                 <input type="submit" value="로그인" class="btn-sm btn-danger">
-                                </form>
-                            </div>
-                            <div class="register" style="display:none">
-                                <form action="#" method="post">
+                                 <input type="password" name="pwd" id="pwd" placeholder="비밀번호 입력" class="input-sm">
+                                 <input type="button" value="로그인" class="btn-sm btn-danger" 
+                                   id="logBtn"
+                                 >
+                               
+                             </div>
+                            </c:if>
+                            <c:if test="${sessionScope.id!=null }">
+                             <div class="login">
+                                <form action="../member/logout.do" method="post">
                                 ${sessionScope.name }(${sessionScope.admin=='y'?'관리자':'일반사용자' })님 로그인되었습니다
                                 <input type="submit" value="로그아웃" class="btn-sm btn-danger">
                                 </form>
-                            </div>
+                             </div>
+                            </c:if>
                         </div>
                         
                     </div>
