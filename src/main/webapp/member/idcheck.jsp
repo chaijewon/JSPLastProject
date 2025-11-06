@@ -100,6 +100,16 @@ button:hover {
   border: 1px solid #f5b7b1;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#okBtn').click(function(){
+		let id=$('#userid').val()
+		parent.frm.id.value=id
+		parent.Shadowbox.close()
+	})
+})
+</script>
 </head>
 <body>
 

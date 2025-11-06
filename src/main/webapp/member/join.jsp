@@ -81,12 +81,13 @@ $(function(){
 			      <span class="glyphicon glyphicon-leaf"></span>
 			    </div>
 			    <div class="panel-body">
+			     <form name="frm">
 			      <table class="table table-bordered table-hover">
 			        <tr>
 			          <th class="text-center" width="20%">ID</th>
 			          <td>
 			            <div class="form-inline">
-			              <input type="text" name="id" id="id" class="form-control input-sm" placeholder="아이디" readonly>
+			              <input type="text" name="id" id="join_id" class="form-control input-sm" placeholder="아이디" readonly>
 			              <button type="button" id="idBtn" class="btn btn-mint btn-sm">중복체크</button>
 			            </div>
 			          </td>
@@ -171,6 +172,7 @@ $(function(){
 			          </td>
 			        </tr>
 			      </table>
+			      </form>
 			    </div>
 			  </div>
             </div>
