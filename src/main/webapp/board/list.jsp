@@ -51,7 +51,7 @@
 	              <table class="table">
 	               <tr>
 	                 <td>
-	                  <a href="../board/insert.do" class="btn btn-mint btn-sm">새글</a>
+	                  <a href="../board/insert.do" class="btn btn-mint btn-sm"><span class="glyphicon glyphicon-pencil"></span>새글</a>
 	                 </td>
 	               </tr>
 	              </table>
@@ -90,9 +90,9 @@
 	                  <input type=button class="btn-sm btn-pink" value="검색">
 	                 </td>
 	                 <td class="text-right">
-	                  <a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-pink">이전</a>
+	                  <a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-pink"><span class="glyphicon glyphicon-chevron-left"></span>이전</a>
 	                  ${curpage } page / ${totalpage } pages
-	                  <a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-mint">다음</a> 
+	                  <a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-mint">다음<span class="glyphicon glyphicon-chevron-right"></span></a> 
 	                 </td>
 	                </tr>
 	              </table>
