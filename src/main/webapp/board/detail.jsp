@@ -153,59 +153,83 @@ $(function(){
               </tr>
              </table>
             </div>
-            <div class="row board_row" style="margin-top: 10px">
-              <h3>댓글</h3>
-              <c:if test="${rcount==0 }">
-               <table class="table">
-                 <tr>
-                  <td class="text-center">
-                   댓글등록이 없습니다
-                  </td>
-                 </tr>
-               </table>
-              </c:if>
-              <c:if test="${rcount>0 }">
-               <table class="table">
-                <tr>
-                 <td>
-                    <c:forEach var="rvo" items="${rList }">
-                     <table class="table">
-                      <tr>
-                       <td class="text-left">
-                       ◑${rvo.name }(${rvo.dbday })
-                       </td>
-                       <td class="text-right">
-                        <c:if test="${sessionScope.id!=null }">
-                         <c:if test="${sessionScope.id==rvo.id }">
-                          <a href="#" class="btn btn-xs btn-info">수정</a>
-                          <a href="#" class="btn btn-xs btn-warning">삭제</a>
-                         </c:if>
-                         <a href="#" class="btn btn-xs btn-success">댓글</a>
-                        </c:if>
-                       </td>
-                      </tr>
-                      <tr>
-                       <td colspan="2" class="text-left" valign="top">
-                        <pre style="white-space: pre-wrap;background-color: white;border:none">${rvo.msg }</pre>
-                       </td>
-                      </tr>
-                     </table>
-                    </c:forEach>
-                 </td>
-                </tr>
-               </table>
-              </c:if>
-              <c:if test="${sessionScope.id!=null }">
-              <table class="table">
-               <tr>
-                <td>
-                 <textarea rows="5" cols="80" name="msg" style="float: left"></textarea>
-                 <button style="width: 100px;height: 100px;background-color: blue;color:white;float: left">댓글쓰기</button>
-                </td>
-               </tr>
-              </table>
-              </c:if>
+            <div class="row board_row" style="margin-top: 20px;">
+  <div class="col-md-10 col-md-offset-1">
+    <h3 class="text-primary" style="border-bottom: 2px solid #337ab7; padding-bottom: 8px;">
+      <span class="glyphicon glyphicon-comment"></span> 댓글
+    </h3>
+
+    <!-- 댓글이 없는 경우 -->
+    <c:if test="${rcount==0}">
+      <div class="alert alert-info text-center" style="margin-top:15px;">
+        <span class="glyphicon glyphicon-info-sign"></span> 아직 등록된 댓글이 없습니다.
+      </div>
+    </c:if>
+
+    <!-- 댓글이 있는 경우 -->
+    <c:if test="${rcount>0}">
+      <c:forEach var="rvo" items="${rList}">
+        <div class="panel panel-default" style="margin-top:15px;">
+          <div class="panel-heading" style="background-color:#f7f7f7;">
+            <div class="row">
+              <div class="col-md-8 col-sm-8 text-left">
+                <strong>${rvo.name}</strong>
+                <small class="text-muted">(${rvo.dbday})</small>
+              </div>
+              <div class="col-md-4 col-sm-4 text-right">
+                <c:if test="${sessionScope.id!=null}">
+                  <c:if test="${sessionScope.id==rvo.id}">
+                    <a href="#" class="btn btn-xs btn-info">
+                      <span class="glyphicon glyphicon-pencil"></span> 수정
+                    </a>
+                    <a href="#" class="btn btn-xs btn-warning">
+                      <span class="glyphicon glyphicon-trash"></span> 삭제
+                    </a>
+                  </c:if>
+                  <a href="#" class="btn btn-xs btn-success">
+                    <span class="glyphicon glyphicon-share-alt"></span> 답글
+                  </a>
+                </c:if>
+              </div>
             </div>
+          </div>
+          <div class="panel-body" style="background-color: #fcfcfc;">
+            <pre style="white-space: pre-wrap; background-color: transparent; border:none; font-size:14px;">
+${rvo.msg}
+            </pre>
+          </div>
+        </div>
+      </c:forEach>
+    </c:if>
+
+    <!-- 댓글 입력창 -->
+    <c:if test="${sessionScope.id!=null}">
+      <div class="panel panel-primary" style="margin-top:20px;">
+        <div class="panel-heading">
+          <strong>댓글쓰기</strong>
+        </div>
+        <div class="panel-body">
+          <form method="post" action="reply_insert.do">
+            <div class="form-group">
+              <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;">
+              <span class="glyphicon glyphicon-send"></span> 등록하기
+            </button>
+          </form>
+        </div>
+      </div>
+    </c:if>
+
+    <!-- 로그인 안된 경우 -->
+    <c:if test="${sessionScope.id==null}">
+      <div class="alert alert-warning text-center" style="margin-top:15px;">
+        <span class="glyphicon glyphicon-lock"></span> 댓글을 작성하려면 로그인하세요.
+      </div>
+    </c:if>
+  </div>
+</div>
+            
         </div>
     </section>
 </body>
