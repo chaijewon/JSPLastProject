@@ -32,6 +32,15 @@ $(function(){
 			title:'아이디 중복체크'
 		})
 	})
+	
+	$('#postBtn').on('click',function(){
+		new daum.Postcode({
+			oncomplete:function(data){
+				$('#post').val(data.zonecode)
+				$('#addr1').val(data.address)
+			}
+		}).open()
+	})
 })
 </script>
 </head>
