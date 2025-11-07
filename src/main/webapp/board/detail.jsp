@@ -290,9 +290,11 @@ $(function(){
          <strong>댓글쓰기</strong> 
          </div> 
          <div class="panel-body"> 
-         <form method="post" action="reply_insert.do"> 
+         <form method="post" action="../reply/reply_insert.do"> 
          <div class="form-group"> 
          <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;"></textarea> 
+         <input type=hidden name="bno" value="${vo.no }">
+         <input type=hidden name="page" value="${page }">
          </div> 
          <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;"> 
          <span class="glyphicon glyphicon-send">
