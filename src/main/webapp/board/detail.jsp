@@ -106,6 +106,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 let bCheck=true
+let u=0
+let i=0
 $(function(){
 	$("#delSpan").text("삭제")
 	$('#delSpan').click(function(){
@@ -164,6 +166,46 @@ $(function(){
 				console.log(error)
 			}
 		})
+	})
+	/* 댓글 */ 
+	$('.ups').hide()
+	$('.upBtns').click(function(){
+		let no=$(this).attr("data-no")
+		if(u==0)
+		{
+			$('.ups').hide()
+			$('.ins').hide()
+			$('#up'+no).show()
+			$(this).text("취소")
+			u=1
+		}
+		else
+		{
+			$('#up'+no).hide()
+			//$(this).text("수정")
+			
+			$('.upBtns').text("수정")
+			u=0
+		}
+	})
+	$('.ins').hide()
+	$('.inBtns').click(function(){
+		let no=$(this).attr("data-no")
+		if(u==0)
+		{
+			$('.ins').hide()
+			$('.ups').hide()
+			$('#in'+no).show()
+			$(this).text("취소")
+			u=1
+		}
+		else
+		{
+			$('#in'+no).hide()
+			//$(this).text("수정")
+			$('.inBtns').text("답변")
+			u=0
+		}
 	})
 })
 </script>
@@ -256,10 +298,10 @@ $(function(){
 		            <div class="col-md-4 text-right">
 		              <c:if test="${sessionScope.id!=null}">
 		               <c:if test="${sessionScope.id==rvo.id}">
-		                <a href="#" class="btn btn-xs btn-info">수정</a>
+		                <span class="btn btn-xs btn-info upBtns" data-no="${rvo.no}">수정</span>
 		                <a href="#" class="btn btn-xs btn-warning">삭제</a>
 		               </c:if>
-		                <a href="#" class="btn btn-xs btn-success">답글</a>
+		                <span class="btn btn-xs btn-success inBtns" data-no="${rvo.no}">답글</a>
 		              </c:if>
 		            </div>
 		          </div>
@@ -267,18 +309,78 @@ $(function(){
 		        <div class="panel-body">
 		          <pre>${rvo.msg}</pre>
 		        </div>
+		        <form id="up${rvo.no }" class="ups" style="display:none" method="post" action="../reply/reply_update.do"> 
+		         <div class="form-group"> 
+		         <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;">${rvo.msg}</textarea> 
+		         <input type=hidden name="bno" value="${vo.no }">
+		         <input type=hidden name="page" value="${page }">
+		         <input type=hidden name="no" value="${rvo.no }">
+		         </div> 
+		         <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;"> 
+		         <span class="glyphicon glyphicon-send">
+		         </span> 수정하기 </button> 
+		        </form>
+		        <div>
+		         <form id="in${rvo.no }" class="ins" style="display:none" method="post" action="../reply/reply_reply_insert.do"> 
+		         <div class="form-group"> 
+		         <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;"></textarea> 
+		         <input type=hidden name="bno" value="${vo.no }">
+		         <input type=hidden name="page" value="${page }">
+		         <input type=hidden name="pno" value="${rvo.no }">
+		         </div> 
+		         <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;"> 
+		         <span class="glyphicon glyphicon-send">
+		         </span> 댓글쓰기 </button> 
+		        </form> 
+		        </div> 
 		      </div>
 		    </c:when>
 		    <c:otherwise>
 		      <div class="panel panel-info reply-panel" style="margin-left: ${(rvo.group_tab*30)+='px'}">
 		        <img src="../board/images/re_icon.png" class="reply-icon">
+		        
 		        <div class="panel-heading">
+		         <div>
 		          <strong>${rvo.name}</strong> 
 		          <small class="text-muted">(${rvo.dbday})</small>
+		         </div>
+		        <div class="text-right">
+		              <c:if test="${sessionScope.id!=null}">
+		               <c:if test="${sessionScope.id==rvo.id}">
+		                <span class="btn btn-xs btn-info upBtns" data-no="${rvo.no}">수정</span>
+		                <a href="#" class="btn btn-xs btn-warning">삭제</a>
+		               </c:if>
+		                <span class="btn btn-xs btn-success inBtns" data-no="${rvo.no}">답글</a>
+		              </c:if>
+		         </div>
 		        </div>
 		        <div class="panel-body">
 		          <pre>${rvo.msg}</pre>
 		        </div>
+		        <form id="up${rvo.no }" class="ups" style="display:none" method="post" action="../reply/reply_update.do"> 
+		         <div class="form-group"> 
+		         <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;">${rvo.msg}</textarea> 
+		         <input type=hidden name="bno" value="${vo.no }">
+		         <input type=hidden name="page" value="${page }">
+		         <input type=hidden name="no" value="${rvo.no }">
+		         </div> 
+		         <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;"> 
+		         <span class="glyphicon glyphicon-send">
+		         </span> 수정하기 </button> 
+		        </form> 
+		        <div>
+		         <form id="in${rvo.no }" class="ins" style="display:none" method="post" action="../reply/reply_reply_insert.do"> 
+		         <div class="form-group"> 
+		         <textarea class="form-control" rows="4" name="msg" placeholder="댓글을 입력하세요..." style="resize:none;"></textarea> 
+		         <input type=hidden name="bno" value="${vo.no }">
+		         <input type=hidden name="page" value="${page }">
+		         <input type=hidden name="pno" value="${rvo.no }">
+		         </div> 
+		         <button type="submit" class="btn btn-primary btn-block" style="font-weight:bold;"> 
+		         <span class="glyphicon glyphicon-send">
+		         </span> 댓글쓰기 </button> 
+		        </form> 
+		        </div> 
 		      </div>
 		    </c:otherwise>
 		  </c:choose>

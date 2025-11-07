@@ -78,4 +78,113 @@ public class BoardReplyDAO {
 		  ex.printStackTrace();
 	  }
   }
+  /*
+   *  <update id="replyUpdate" parameterType="BoardReplyVO">
+	   UPDATE mvcBoardReply SET
+	   msg=#{msg}
+	   WHERE no=#{no}
+	  </update>
+   */
+  public static void replyUpdate(BoardReplyVO vo)
+  {
+	  try
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("replyUpdate",vo);
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+  }
+  /*
+   *   <!-- 대댓글 -->
+  <!-- 1. group_id , group_step , group_tab -->
+  <select id="replyParentInfoData" resultType="BoardReplyVO"
+   parameterType="int"
+  >
+    SELECT group_id,group_step,group_tab 
+    FROM mvcBoardReply
+    WHERE no=#{no}
+  </select>
+  <!-- 2. 답변의 순서 지정  -->
+  <update id="replyGroupStepIncrement" 
+    parameterType="BoardReplyVO">
+    UPDATE mvcBoardReply SET 
+    group_step=group_step+1
+    WHERE group_id=#{group_id} AND group_step>#{group_step}  
+  </update>
+  <!-- 
+                     gi gs gt
+        group_id : 답변을 모아서 관리 
+        group_step : 답변 출력 = 순서
+        group_tab : 간격
+                        gi   gs  gt 
+        AAAAAA          1     0   0
+          => BBBBBB     1     1   1
+          => KKKKKK     1     2   1
+        CCCCCC          2     0   0
+          => OOOOOO     2     1   1 
+          => DDDDDD     2     2   1
+          
+           => GGGGGG    2     3   2
+          
+   -->
+   <!-- 3. INSERT 
+     NO         NOT NULL NUMBER       
+	BNO                 NUMBER       
+	ID                  VARCHAR2(20) 
+	NAME       NOT NULL VARCHAR2(51) 
+	MSG        NOT NULL CLOB         
+	REGDATE             DATE         
+	GROUP_ID            NUMBER       
+	GROUP_STEP          NUMBER       
+	GROUP_TAB           NUMBER       
+	ROOT                NUMBER       
+	DEPTH               NUMBER
+   -->
+   <insert id="replyReplyInsert" parameterType="BoardReplyVO">
+     INSERT INTO mvcBoardReply(no,bno,id,name,msg,
+       group_id,group_step,group_tab,root
+     )
+     VALUES(mr_no_seq.nextval,
+      #{bno},
+      #{id},
+      #{name},
+      #{msg},
+      #{group_id},
+      #{group_step},
+      #{group_tab},
+      #{root}
+     )
+   </insert>
+   <!-- 
+       4. depth 증가
+    -->
+    <update id="replyDepthIncrement" parameterType="int">
+     UPADTE mvcBoardReply SET
+     depth=depth+1
+     WHERE no=#{no}
+    </update>
+   */
+  public static void replyReplyInsert(int pno,BoardReplyVO vo)
+  {
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  BoardReplyVO pvo=session.selectOne("replyParentInfoData",pno);
+		  session.update("replyGroupStepIncrement",pvo);
+		  vo.setGroup_id(pvo.getGroup_id());
+		  vo.setGroup_step(pvo.getGroup_step()+1);
+		  vo.setGroup_tab(pvo.getGroup_tab()+1);
+		  vo.setRoot(pno);
+		  session.insert("replyReplyInsert",vo);
+		  session.update("replyDepthIncrement",pno);
+		  session.commit();
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+  }
 }
