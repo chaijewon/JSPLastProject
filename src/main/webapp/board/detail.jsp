@@ -296,10 +296,10 @@ $(function(){
 		              <small class="text-muted">(${rvo.dbday})</small>
 		            </div>
 		            <div class="col-md-4 text-right">
-		              <c:if test="${sessionScope.id!=null}">
-		               <c:if test="${sessionScope.id==rvo.id}">
+		              <c:if test="${sessionScope.id!=null && rvo.msg!='관리자가 삭제한 댓글입니다'}">
+		               <c:if test="${sessionScope.id==rvo.id }">
 		                <span class="btn btn-xs btn-info upBtns" data-no="${rvo.no}">수정</span>
-		                <a href="#" class="btn btn-xs btn-warning">삭제</a>
+		                <a href="../reply/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${page}" class="btn btn-xs btn-warning">삭제</a>
 		               </c:if>
 		                <span class="btn btn-xs btn-success inBtns" data-no="${rvo.no}">답글</a>
 		              </c:if>
@@ -345,10 +345,10 @@ $(function(){
 		          <small class="text-muted">(${rvo.dbday})</small>
 		         </div>
 		        <div class="text-right">
-		              <c:if test="${sessionScope.id!=null}">
+		              <c:if test="${sessionScope.id!=null && rvo.msg!='관리자가 삭제한 댓글입니다'}">
 		               <c:if test="${sessionScope.id==rvo.id}">
 		                <span class="btn btn-xs btn-info upBtns" data-no="${rvo.no}">수정</span>
-		                <a href="#" class="btn btn-xs btn-warning">삭제</a>
+		                <a href="../reply/reply_delete.do?no=${rvo.no }&bno=${vo.no}&page=${page}" class="btn btn-xs btn-warning">삭제</a>
 		               </c:if>
 		                <span class="btn btn-xs btn-success inBtns" data-no="${rvo.no}">답글</a>
 		              </c:if>

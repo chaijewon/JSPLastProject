@@ -187,4 +187,57 @@ public class BoardReplyDAO {
 		  ex.printStackTrace();
 	  }
   }
+  // 삭제
+  /*
+   *   <!-- 삭제 -->
+    <!-- 1. depth,root -->
+    <select id="replyInfoData" resultType="BoardReplyVO"
+      parameterType="int"
+    >
+      SELECT depth,root 
+      FROM mvcBoardReply
+      WHERE no=#{no}
+    </select>
+    <!-- 2. 삭제 
+         = depth > 0
+         = depth = 0
+    -->
+    <delete id="replyDelete" parameterType="int">
+      DELETE FROM mvcBoardReply
+      WHERE no=#{no}
+    </delete>
+    <update id="replyMsgUpdate" parameterType="int">
+      UPDATE mvcBoardReply SET 
+      msg='관리자가 삭제한 댓글입니다'
+      WHERE no=#{no}
+    </update>
+    <!-- root= depth를 감소 -->
+    <update id="replyDepthDecrement" parameterType="int">
+      UPDATE mvcBoardReply SET 
+      depth=depth-1
+      WHERE no=#{no}
+    </update>
+   */
+  public static void replyDelete(int no)
+  {
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  BoardReplyVO vo=session.selectOne("replyInfoData",no);
+		  if(vo.getDepth()==0)
+		  {
+			  session.delete("replyDelete",no);
+		  }
+		  else
+		  {
+			  session.update("replyMsgUpdate",no);
+		  }
+		  session.update("replyDepthDecrement",vo.getRoot());
+		  session.commit();
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+  }
 }

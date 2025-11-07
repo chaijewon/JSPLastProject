@@ -112,4 +112,16 @@ public class BoardReplyModel {
 	  BoardReplyDAO.replyReplyInsert(Integer.parseInt(pno), vo);
 	  return "redirect:../board/detail.do?no="+bno+"&page="+page;
   }
+  @RequestMapping("reply/reply_delete.do")
+  public String reply_delete(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String bno=request.getParameter("bno");
+	  String page=request.getParameter("page");
+	  String no=request.getParameter("no");
+	  
+	  // DB연동 
+	  BoardReplyDAO.replyDelete(Integer.parseInt(no));
+	  return "redirect:../board/detail.do?no="+bno+"&page="+page;
+  }
 }

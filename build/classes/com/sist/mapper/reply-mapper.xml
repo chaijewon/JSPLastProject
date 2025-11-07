@@ -99,4 +99,33 @@
      depth=depth+1
      WHERE no=#{no}
     </update>
+    
+    <!-- 삭제 -->
+    <!-- 1. depth,root -->
+    <select id="replyInfoData" resultType="BoardReplyVO"
+      parameterType="int"
+    >
+      SELECT depth,root 
+      FROM mvcBoardReply
+      WHERE no=#{no}
+    </select>
+    <!-- 2. 삭제 
+         = depth > 0
+         = depth = 0
+    -->
+    <delete id="replyDelete" parameterType="int">
+      DELETE FROM mvcBoardReply
+      WHERE no=#{no}
+    </delete>
+    <update id="replyMsgUpdate" parameterType="int">
+      UPDATE mvcBoardReply SET 
+      msg='관리자가 삭제한 댓글입니다'
+      WHERE no=#{no}
+    </update>
+    <!-- root= depth를 감소 -->
+    <update id="replyDepthDecrement" parameterType="int">
+      UPDATE mvcBoardReply SET 
+      depth=depth-1
+      WHERE no=#{no}
+    </update>
 </mapper>
