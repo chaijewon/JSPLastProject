@@ -4,14 +4,25 @@
   <select id="replyListData" resultType="BoardReplyVO" 
     parameterType="int">
     SELECT no,bno,id,name,msg,
-           TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+           TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,group_tab
     FROM mvcBoardReply
     WHERE bno=#{bno}
+    ORDER BY group_id DESC , group_step ASC
   </select>
   <select id="replyCount" resultType="int" parameterType="int">
     SELECT COUNT(*) 
     FROM mvcBoardReply
     WHERE bno=#{bno}
   </select>
-  
+  <!-- 댓글 추가  -->
+  <insert id="replyInsert" parameterType="BoardReplyVO">
+    INSERT INTO mvcBoardReply(no,bno,id,name,msg,group_id)
+    VALUES(mr_no_seq.nextval,
+     #{bno},
+     #{id},
+     #{name},
+     #{msg},
+     (SELECT NVL(MAX(group_id)+1,1) FROM mvcBoardReply)
+    )
+  </insert>
 </mapper>

@@ -54,4 +54,28 @@ public class BoardReplyDAO {
 	  }
 	  return count;
   }
+  /*
+   *  <insert id="replyInsert" parameterType="BoardReplyVO">
+    INSERT INTO mvcBoardReply(no,bno,id,name,msg,group_id)
+    VALUES(mr_no_seq.nextval,
+     #{bno},
+     #{id},
+     #{name},
+     #{msg},
+     (SELECT NVL(MAX(group_id)+1,1) FROM mvcBoardReply)
+    )
+  </insert>
+   */
+  public static void replyInsert(BoardReplyVO vo)
+  {
+	  try
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.insert("replyInsert",vo);
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+  }
 }
