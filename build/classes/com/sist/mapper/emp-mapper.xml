@@ -24,7 +24,7 @@
   <select id="empAllNames" resultType="string">
     SELECT ename FROM emp
   </select>
-  <!-- 동적 쿼리 -->
+  <!-- 동적 쿼리 trim/foreach/if/choose/when/bind/where/set-->
   <select id="empFindData" resultMap="empMap" 
     parameterType="hashmap">
     SELECT empno,ename,job,
@@ -32,16 +32,16 @@
            dname,loc
     FROM emp,dept 
     WHERE emp.deptno=dept.deptno
-    
-    <trim prefix="AND ename IN("  suffix=")" 
-          suffixOverrides=")">
+    AND ename IN
+    <!-- <trim prefix="AND ename IN("  suffix=")" 
+          suffixOverrides=")"> -->
      <foreach collection="nameArr" item="ename"
-      close=")" separator=","
+      close=")" separator="," open="("
      >
       #{ename}
      </foreach>
     
-    </trim>
+   <!--  </trim> -->
     
   </select>
   <!-- 
