@@ -6,6 +6,23 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#findBtn').click(function(){
+		$.ajax({
+			type:'post',
+			url:'../food/find_ajax.do',
+			data:{fd:'마포','column':'address',
+				'type':'한식','type':'양식','type':'중식'},
+			success:function(result)
+			{
+				$('#count').html(result);
+			}
+		})
+	})
+})
+</script>
 </head>
 <!-- ****** Breadcumb Area Start ****** -->
     <div class="breadcumb-area" style="background-image: url(../img/bg-img/breadcumb.jpg);">
@@ -25,6 +42,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
+                          <!-- <form method="post" action="../food/find.do"> -->
                             <input type="checkbox" name=type value="A">한식
                             <input type="checkbox" name=type value="B">일식
                             <input type="checkbox" name=type value="C">중식
@@ -37,7 +55,8 @@
                             </select>
                             <input type=text name=fd class="input-sm">
                             <input type=button value="검색"
-                             class="btn-sm btn-danger">
+                             class="btn-sm btn-danger" id="findBtn">
+                            <!-- </form> -->
                         </ol>
                     </nav>
                 </div>
@@ -50,6 +69,7 @@
     <section class="archive-area section_padding_80">
         <div class="container">
             <div class="row">
+             <h3>총 검색 결과 <span id="count"></span> </h3>
             </div>
         </div>
     </section>

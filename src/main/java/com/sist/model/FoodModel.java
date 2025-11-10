@@ -1,4 +1,5 @@
 package com.sist.model;
+import java.io.PrintWriter;
 import java.util.*;
 
 import com.sist.controller.Controller;
@@ -164,7 +165,57 @@ public class FoodModel {
    public String food_find(HttpServletRequest request,
 		   HttpServletResponse response)
    {
+	   // 검색어 / 컬럼명 / type 여러개 / 페이지 
+	   /*String page=request.getParameter("page");
+	   if(page==null)
+		   page="1";
+	   int curpage=Integer.parseInt(page);
+	   String[] types=request.getParameterValues("type");
+	   String column=request.getParameter("column");
+	   String fd=request.getParameter("fd");
+	   Map map=new HashMap();
+	   int rowSize=12;
+	   int start=(rowSize*curpage)-(rowSize-1);
+	   int end=rowSize*curpage;
+	   map.put("start", start);
+	   map.put("end", end);
+	   map.put("fdArr", types);
+	   map.put("ss", fd);
+	   map.put("column", column);
+	   List<FoodVO> list=FoodDAO.foodFindData(map);
+	   int count = FoodDAO.foodFindCount(map);
+	   request.setAttribute("count", count);
+	   */
 	   request.setAttribute("main_jsp", "../food/find.jsp");
 	   return "../main/main.jsp";
+   }
+   @RequestMapping("../food/find_ajax.do")
+   public void food_find_ajax(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   String page=request.getParameter("page");
+	   if(page==null)
+		   page="1";
+	   int curpage=Integer.parseInt(page);
+	   String[] types=request.getParameterValues("type");
+	   String column=request.getParameter("column");
+	   String fd=request.getParameter("fd");
+	   Map map=new HashMap();
+	   int rowSize=12;
+	   int start=(rowSize*curpage)-(rowSize-1);
+	   int end=rowSize*curpage;
+	   map.put("start", start);
+	   map.put("end", end);
+	   map.put("fdArr", types);
+	   map.put("ss", fd);
+	   map.put("column", column);
+	   List<FoodVO> list=FoodDAO.foodFindData(map);
+	   int count = FoodDAO.foodFindCount(map);
+	   try
+	   {
+		   response.setContentType("text/plain;charset=UTF-8");
+		   PrintWriter out=response.getWriter();
+		   out.write(String.valueOf(count));
+	   }catch(Exception ex) {}
    }
 }
