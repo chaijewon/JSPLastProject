@@ -48,7 +48,9 @@
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <!-- Post Thumb -->
                         <div class="post-thumb">
+                          <a href="../recipe/detail.do?no=${vo.no }">
                             <img src="${vo.poster }" alt="">
+                          </a>
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
@@ -79,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="../recipe/detail.do?no=${vo.no }">
                                 <h4 class="post-headline">${vo.title }</h4>
                             </a>
                         </div>

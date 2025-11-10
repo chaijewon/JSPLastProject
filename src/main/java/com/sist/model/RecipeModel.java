@@ -95,6 +95,26 @@ public class RecipeModel {
 	   
 	   return "../main/main.jsp";
    }
-   // 상세보기 
-   
+   // 상세보기
+   @RequestMapping("recipe/detail.do")
+   public String recipe_detail(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   String no=request.getParameter("no");
+	   RecipeDetailVO vo=RecipeDAO.recipeDetailData(Integer.parseInt(no));
+	   List<String> mList=new ArrayList<String>();
+	   List<String> iList=new ArrayList<String>();
+	   String[] datas=vo.getFoodmake().split("\n");
+	   for(String s:datas)
+	   {
+		   StringTokenizer st=new StringTokenizer(s,"^");
+		   mList.add(st.nextToken());
+		   iList.add(st.nextToken());
+	   }
+	   request.setAttribute("vo",vo);
+	   request.setAttribute("mList",mList);
+	   request.setAttribute("iList",iList);
+	   request.setAttribute("main_jsp", "../recipe/detail.jsp");
+	   return "../main/main.jsp";
+   }
 }

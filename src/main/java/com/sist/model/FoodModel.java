@@ -160,4 +160,11 @@ public class FoodModel {
 	   
 	   return "redirect:../food/detail.do?fno="+fno+"&page="+page;
    }
+   @RequestMapping("food/find.do")
+   public String food_find(HttpServletRequest request,
+		   HttpServletResponse response)
+   {
+	   request.setAttribute("main_jsp", "../food/find.jsp");
+	   return "../main/main.jsp";
+   }
 }
