@@ -189,15 +189,17 @@ public class FoodModel {
 	   request.setAttribute("main_jsp", "../food/find.jsp");
 	   return "../main/main.jsp";
    }
-   @RequestMapping("../food/find_ajax.do")
+   @RequestMapping("food/find_ajax.do")
    public void food_find_ajax(HttpServletRequest request,
 		   HttpServletResponse response)
    {
+	   System.out.println(1);
 	   String page=request.getParameter("page");
 	   if(page==null)
 		   page="1";
 	   int curpage=Integer.parseInt(page);
 	   String[] types=request.getParameterValues("type");
+	   System.out.println(Arrays.toString(types));
 	   String column=request.getParameter("column");
 	   String fd=request.getParameter("fd");
 	   Map map=new HashMap();

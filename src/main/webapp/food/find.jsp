@@ -10,14 +10,35 @@
 <script type="text/javascript">
 $(function(){
 	$('#findBtn').click(function(){
+		let types=[]
+		let count=$('input[name=type]:checked').length
+		if(count==0)
+		{
+			alert("체크박스에 체크하세요!!")
+			return
+		}
+		$('input[name=type]:checked').each(function(){
+			types.push($(this).val())
+		})
+		let fd=$('#fd').val()
+		if(fd.trim()==="")
+		{
+			$('#fd').focus()
+			return
+		}
+		let column=$('#column').val()
+		console.log(types)
+		console.log("검색어:"+fd)
+		console.log("컬럼명:"+column)
+		// 배열 => traditional 
 		$.ajax({
 			type:'post',
 			url:'../food/find_ajax.do',
-			data:{fd:'마포','column':'address',
-				'type':'한식','type':'양식','type':'중식'},
+			data:{"fd":fd,"column":column,"type":types},
+			traditional:true,
 			success:function(result)
 			{
-				$('#count').html(result);
+				$('#count').text(result)
 			}
 		})
 	})
@@ -48,12 +69,12 @@ $(function(){
                             <input type="checkbox" name=type value="C">중식
                             <input type="checkbox" name=type value="D">양식
                             <input type="checkbox" name=type value="E">분식
-                            <select name="column" class="input-sm">
+                            <select name="column" id="column" class="input-sm">
                               <option value="address">주소</option>
                               <option value="name">업체명</option>
                               <option value="theme">테마</option>
                             </select>
-                            <input type=text name=fd class="input-sm">
+                            <input type=text name=fd id="fd" class="input-sm">
                             <input type=button value="검색"
                              class="btn-sm btn-danger" id="findBtn">
                             <!-- </form> -->
