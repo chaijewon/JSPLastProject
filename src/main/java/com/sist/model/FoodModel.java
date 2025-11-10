@@ -120,9 +120,11 @@ public class FoodModel {
    {
 	   String fno=request.getParameter("fno");
 	   String page=request.getParameter("page");
+	   String link=request.getParameter("link");
 	   FoodVO vo=FoodDAO.foodDetailData(Integer.parseInt(fno));
 	   request.setAttribute("vo", vo);
 	   request.setAttribute("page", page);
+	   request.setAttribute("link", link);
 	   // String food_detail(int fno)
 	   // String food_detail(FoodVO vo)
 	   // => 스프링 : 전송 객체 / 사용자 요청값 Model
@@ -215,6 +217,12 @@ public class FoodModel {
 	   map.put("ss", fd);
 	   map.put("column", column);
 	   List<FoodVO> list=FoodDAO.foodFindData(map);
+	   for(FoodVO vo:list)
+	   {
+		   String s=vo.getAddress();
+		   s=s.substring(0,s.indexOf(" "));
+		   vo.setAddress(s.trim());
+	   }
 	   int count = FoodDAO.foodFindCount(map);
 	   final int BLOCK=10;
 	   int startPage=((curpage-1)/BLOCK*BLOCK)+1;

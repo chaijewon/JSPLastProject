@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<style type="text/css">
+a-link:hover{
+  cursor: pointer;
+}
+</style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -41,10 +46,63 @@ $(function(){
 				let json=JSON.parse(result)
 				console.log(json)
 				$('#count').text(json[0].count)
+				
+				jsonView(json)
 			}
 		})
 	})
 })
+function jsonView(json)
+{
+	 let html=''
+	 json.map((food)=>{
+		 html+='<div class="col-12 col-md-6 col-lg-4">'
+             +'<div class="single-post wow fadeInUp" data-wow-delay="0.1s">'
+              
+             +'<div class="post-thumb">'
+             +'<a class="a-link" href="../food/detail.do?page='+json[0].curpage+'&fno='+food.fno+'&link=1'" >'
+             +'<img src="'+food.poster+'" alt="">'
+             +'</a>'
+             +'</div>'
+             
+             +'<div class="post-content">'
+             +'<div class="post-meta d-flex">'
+             +'<div class="post-author-date-area d-flex">'
+                          
+             +'<div class="post-author">'
+             +'<a href="#">'+food.type+'</a>'
+             +'</div>'
+                          
+             +'<div class="post-date">'
+             +'<a href="#">'+food.address+'</a>'
+             +'</div>'
+             +'</div>'
+                      
+             +'<div class="post-comment-share-area d-flex">'
+                          
+                          +'<div class="post-favourite">'
+                              +'<a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> '+food.likecount+'</a>'
+                          +'</div>'
+                          
+                          +'<div class="post-comments">'
+                              +'<a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> '+food.replycount+'</a>'
+                          +'</div>'
+                          
+                          +'<div class="post-share">'
+                          +'<a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>'
+                          +'</div>'
+                      +'</div>'
+                  +'</div>'
+                  +'<a class="a-link">'
+                      +'<h4 class="post-headline">'+food.name+'</h4>'
+                  +'</a>'
+              +'</div>'
+          +'</div>'
+      +'</div>'	
+	 })
+	 $('.find_print').html(html)
+	 
+}
 </script>
 </head>
 <!-- ****** Breadcumb Area Start ****** -->
@@ -91,9 +149,10 @@ $(function(){
     <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
         <div class="container">
-            <div class="row">
-             <h3>총 검색 결과 <span id="count"></span> </h3>
+            <div class="row find_print">
+             
             </div>
+            
         </div>
     </section>
 
