@@ -77,7 +77,7 @@ function commons(page)
 	$.ajax({
 		type:'post',
 		url:'../food/find_ajax.do',
-		data:{"fd":fd,"column":column,"type":types},
+		data:{"fd":fd,"column":column,"type":types,"page":page},
 		traditional:true,
 		success:function(result)
 		{
@@ -145,7 +145,7 @@ function jsonView(json)
                          if(json[0].startPage>1)
                          {
                              html+='<li class="page-item">'
-                             html+='<a class="page-link" >이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>'
+                             html+='<a class="page-link" onclick="prev('+(json[0].startPage-1)+')">이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>'
                              html+='</li>'
                          }    
                                
@@ -153,18 +153,18 @@ function jsonView(json)
                              {
                             	 if(json[0].curpage===i)
                             	 {
-                                  html+='<li class="page-item active"><a class="page-link" >'+i+'</a></li>'
+                                  html+='<li class="page-item active"><a class="page-link" onclick="change('+i+')">'+i+'</a></li>'
                             	 }
                             	 else
                             	 {
-                            	  html+='<li class="page-item"><a class="page-link">'+i+'</a></li>'
+                            	  html+='<li class="page-item"><a class="page-link" onclick="change('+i+')">'+i+'</a></li>'
                             	 }
                              }
                                       
                               if(json[0].endPage<json[0].totalpage)
                               {
                                 html+='<li class="page-item">'
-                                html+='<a class="page-link" >다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>'
+                                html+='<a class="page-link" onclick="next('+(json[0].endPage+1)+')">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>'
                                 html+='</li>'
                               }
                                
@@ -177,6 +177,18 @@ function jsonView(json)
                         html+='</div>'
 	 
 	 $('.find_print').html(html)
+}
+function change(page)
+{
+	commons(page)
+}
+function prev(page)
+{
+	commons(page)
+}
+function next(page)
+{
+	commons(page)
 }
 </script>
 </head>
