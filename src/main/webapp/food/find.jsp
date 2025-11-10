@@ -38,7 +38,9 @@ $(function(){
 			traditional:true,
 			success:function(result)
 			{
-				$('#count').text(result)
+				let json=JSON.parse(result)
+				console.log(json)
+				$('#count').text(json[0].count)
 			}
 		})
 	})
