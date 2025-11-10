@@ -51,7 +51,44 @@ $(function(){
 			}
 		})
 	})
+	$('#fd').keydown(function(e){
+		if(e.keyCode==13)
+		{
+			commons(1)
+		}
+	})
 })
+// 1.처음 
+// 2. <
+// 3. >
+// 4.  1 2 3 4 5 6 7..
+function commons(page)
+{
+	let types=[]
+	$('input[name=type]:checked').each(function(){
+		types.push($(this).val())
+	})
+	let fd=$('#fd').val()
+	let column=$('#column').val()
+	console.log(types)
+	console.log("검색어:"+fd)
+	console.log("컬럼명:"+column)
+	// 배열 => traditional 
+	$.ajax({
+		type:'post',
+		url:'../food/find_ajax.do',
+		data:{"fd":fd,"column":column,"type":types},
+		traditional:true,
+		success:function(result)
+		{
+			let json=JSON.parse(result)
+			console.log(json)
+			$('#count').text(json[0].count)
+			
+			jsonView(json)
+		}
+	})
+}
 function jsonView(json)
 {
 	 let html=''
@@ -60,7 +97,7 @@ function jsonView(json)
              +'<div class="single-post wow fadeInUp" data-wow-delay="0.1s">'
               
              +'<div class="post-thumb">'
-             +'<a class="a-link" href="../food/detail.do?page='+json[0].curpage+'&fno='+food.fno+'&link=1'" >'
+             +'<a class="a-link" href="../food/detail.do?page='+json[0].curpage+'&fno='+food.fno+'&link=1" >'
              +'<img src="'+food.poster+'" alt="">'
              +'</a>'
              +'</div>'
@@ -93,15 +130,53 @@ function jsonView(json)
                           +'</div>'
                       +'</div>'
                   +'</div>'
-                  +'<a class="a-link">'
+                  +'<a class="a-link" href="../food/detail.do?page='+json[0].curpage+'&fno='+food.fno+'&link=1">'
                       +'<h4 class="post-headline">'+food.name+'</h4>'
                   +'</a>'
               +'</div>'
           +'</div>'
       +'</div>'	
 	 })
-	 $('.find_print').html(html)
+	   // page
+	   html+='<div class="col-12">'
+       html+='<div class="pagination-area d-sm-flex mt-15">'
+       html+='<nav aria-label="#">'
+       html+='<ul class="pagination">'
+                         if(json[0].startPage>1)
+                         {
+                             html+='<li class="page-item">'
+                             html+='<a class="page-link" >이전 <i class="fa fa-angle-double-left" aria-hidden="true"></i></a>'
+                             html+='</li>'
+                         }    
+                               
+                             for(let i=json[0].startPage;i<=json[0].endPage;i++)
+                             {
+                            	 if(json[0].curpage===i)
+                            	 {
+                                  html+='<li class="page-item active"><a class="page-link" >'+i+'</a></li>'
+                            	 }
+                            	 else
+                            	 {
+                            	  html+='<li class="page-item"><a class="page-link">'+i+'</a></li>'
+                            	 }
+                             }
+                                      
+                              if(json[0].endPage<json[0].totalpage)
+                              {
+                                html+='<li class="page-item">'
+                                html+='<a class="page-link" >다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>'
+                                html+='</li>'
+                              }
+                               
+                            html+='</ul>'
+                        html+='</nav>'
+                        html+='<div class="page-status">'
+                        html+='<p>Page '+json[0].curpage+' of '+json[0].totalpage+' results</p>'
+                        html+='</div>'
+                        html+='</div>'
+                        html+='</div>'
 	 
+	 $('.find_print').html(html)
 }
 </script>
 </head>
