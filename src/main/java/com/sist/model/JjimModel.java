@@ -25,6 +25,11 @@ public class JjimModel {
 	  HttpSession session=request.getSession();
 	  String id=(String)session.getAttribute("id");
 	  // DB연동 
+	  JjimVO vo=new JjimVO();
+	  vo.setId(id);
+	  vo.setRno(Integer.parseInt(rno));
+	  vo.setType(Integer.parseInt(type));
+	  JjimDAO.jjimInsert(vo);
 	  return "redirect:"+urls[Integer.parseInt(type)]
 			 +rno+"&page="+page;
   }
