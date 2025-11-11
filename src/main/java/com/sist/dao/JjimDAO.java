@@ -121,4 +121,26 @@ public class JjimDAO {
 		   ex.printStackTrace();
 	   }
    }
+   /*
+    *  <select id="foodDetailData" resultType="FoodVO"
+		    parameterType="int"
+		  >
+		    SELECT * FROM menupan_food
+		    <include refid="where-fno"/>
+		  </select>
+    */
+   public static FoodVO foodDetailData(int fno)
+   {
+	   FoodVO vo=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   vo=session.selectOne("foodDetailData",fno);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return vo;
+   }
 }

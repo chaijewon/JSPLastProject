@@ -55,7 +55,7 @@
   <select id="jjimFoodListData" resultMap="jjimMap"
    parameterType="string"
   >
-    SELECT jno,aj.type,rno,name,poster,address
+    SELECT jno,aj.type,rno,name,poster,address,fno
     FROM all_jjim aj, menupan_food mf
     WHERE aj.rno=mf.fno
     AND id=#{id} AND aj.type=1
