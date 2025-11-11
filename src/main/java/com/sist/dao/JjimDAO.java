@@ -77,4 +77,48 @@ public class JjimDAO {
 		   ex.printStackTrace();
 	   }
    }
+   // 마이페이지에 출력 
+   /*
+    *   <select id="jjimFoodListData" resultMap="jjimMap"
+		   parameterType="string"
+		  >
+		    SELECT jno,aj.type,rno,name,poster
+		    FROM all_jjim aj, menupan_food mf
+		    WHERE aj.rno=mf.fno
+		    AND id=#{id} AND aj.type=1
+		    ORDER BY jno DESC
+		  </select>
+    */
+   public static List<JjimVO> jjimFoodListData(String id)
+   {
+	   List<JjimVO> list=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   list=session.selectList("jjimFoodListData",id);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return list;
+   }
+   /*
+    *   <delete id="jjimCancel" parameterType="int">
+    DELETE FROM all_jjim
+    WHERE jno=#{jno}
+  </delete>
+    */
+   public static void jjimCancel(int jno)
+   {
+	   try
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   session.delete("jjimCancel",jno);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+   }
 }

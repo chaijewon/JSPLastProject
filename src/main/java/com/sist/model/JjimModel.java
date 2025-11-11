@@ -33,4 +33,25 @@ public class JjimModel {
 	  return "redirect:"+urls[Integer.parseInt(type)]
 			 +rno+"&page="+page;
   }
+  @RequestMapping("jjim/jjim_list.do")
+  public String jjim_list(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  List<JjimVO> list=JjimDAO.jjimFoodListData(id);
+	  request.setAttribute("list", list);
+	  request.setAttribute("mypage_jsp", "../mypage/jjim_list.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
+  }
+  @RequestMapping("jjim/jjim_cancel.do")
+  public String jjim_cancel(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String jno=request.getParameter("jno");
+	  // DB연동 
+	  JjimDAO.jjimCancel(Integer.parseInt(jno));
+	  return "redirect:../jjim/jjim_list.do";
+  }
 }
