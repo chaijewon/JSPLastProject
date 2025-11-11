@@ -46,6 +46,7 @@ $(function(){
 					likeCheck=false
 					$('#likeBtn').attr("src","../img/images/likeoff.png")
 				}
+				//$('#likecount').text(result)
 			},
 			error:function(err)
 			{
@@ -87,6 +88,7 @@ $(function(){
 				}
 			})
 		}
+		
 	})
 })
 </script>
@@ -198,7 +200,7 @@ $(function(){
 	                    style="width: 25px;height: 25px"
 	                    class="img-link" id="likeBtn"
 	                   >
-	                  
+	                   
 	                  <a href="#" class="btn btn-xs btn-success">찜하기</a>
 	                  <a href="#" class="btn btn-xs btn-info">예약하기</a>
 	                 </c:if>
