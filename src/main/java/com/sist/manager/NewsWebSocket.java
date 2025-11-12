@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import jakarta.websocket.*;
 import jakarta.websocket.server.*;
-@ServerEndpoint("/news")
+//@ServerEndpoint("/news")
 public class NewsWebSocket {
   // 접속자 정보 => 저장 
   private static Set<Session> clients=ConcurrentHashMap.newKeySet();
