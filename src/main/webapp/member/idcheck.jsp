@@ -160,7 +160,7 @@ $(function(){
     <button id="checkBtn" type="button">중복확인</button>
   </div>
   <div id="message" class="message"></div>
-  <button id="okBtn" type="button" style="display:none">확인</button>
+  <button id="okBtn" type="button" style="display:none;margin-top: 10px">확인</button>
 </div>
 
 

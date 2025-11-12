@@ -129,7 +129,7 @@ $(function(){
 				<table class="table">
 					<tr>
 						<td class="text-center" colspan=3>
-							<img src="${vo.poster }" style="width:700px;height:450px;">
+							<img src="${vo.poster }" style="width:960px;height:450px;">
 						</td>
 					</tr>
 					<tr>
