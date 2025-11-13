@@ -69,7 +69,7 @@ window.onload=function(){
 function connection()
 {
 	// 소켓연결 
-	websocket=new WebSocket("ws://localhost/JSPLastProject/chat")
+	websocket=new WebSocket("ws://192.168.0.21/JSPLastProject/chat")
 	websocket.onopen=onOpen
 	websocket.onclose=onClose
 	websocket.onmessage=onMessage

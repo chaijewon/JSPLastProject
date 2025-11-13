@@ -1,5 +1,41 @@
 package com.sist.dao;
+import java.util.*;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.sist.commons.*;
+import com.sist.vo.*;
 public class AdminDAO {
-
+  private static SqlSessionFactory ssf;
+  static
+  {
+	  ssf=CreateSqlSessionFactory.getSsf();
+	  // MyBatis에 설정된 XML파일 읽기 
+  }
+  /*
+   *   <select id="reserveAdminListData" parameterType="string"
+		   resultMap="reserveMap"
+		  >
+		    SELECT no,ri.fno,id,rday,ri.time,inwon,ok,
+		           name,phone,poster
+		    FROM reserve_info ri,menupan_food mf
+		    WHERE ri.fno=mf.fno
+		    ORDER BY no DESC
+		  </select>
+   */
+  public static List<ReserveVO> reserveAdminListData()
+  {
+	  List<ReserveVO> list=null;
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  list=session.selectList("reserveAdminListData");
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return  list;
+  }
 }
