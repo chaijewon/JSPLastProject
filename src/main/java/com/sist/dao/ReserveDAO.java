@@ -39,4 +39,66 @@ public class ReserveDAO {
 	   }
 	   return list;
    }
+   /*
+    *  <select id="reserveDateTiems" resultType="string" 
+   parameterType="int">
+   SELECT times FROM reserve_date
+   WHERE dno=#{dno}
+  </select>
+  <select id="reserveTime" resultType="string"
+    parameterType="int"
+  >
+    SELECT time FROM reserve_time
+    WHERE tno=#{tno}
+  </select>
+    */
+   public static String reserveDateTiems(int dno)
+   {
+	   String times="";
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   times=session.selectOne("reserveDateTiems",dno);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return times;
+   }
+   public static String reserveTime(int tno)
+   {
+	   String times="";
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   times=session.selectOne("reserveTime",tno);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return times;
+   }
+   /*
+    * <insert id="reserveInsert" parameterType="com.sist.vo.ReserveVO">
+    INSERT INTO reserve_info 
+    VALUES(
+      ri_no_seq.nextval(),
+      #{id},#{fno},#{rday},#{time},#{inwon},#{ok},SYSDATE
+    )
+  </insert>
+    */
+   public static void reserveInsert(ReserveVO vo)
+   {
+	   try
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   session.insert("reserveInsert",vo);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+   }
 }
