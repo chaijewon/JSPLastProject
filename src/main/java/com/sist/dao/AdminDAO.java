@@ -38,4 +38,23 @@ public class AdminDAO {
 	  }
 	  return  list;
   }
+  /*
+   *   <update id="reserveOk" parameterType="int">
+	    UPDATE reserve_info SET
+	    ok=1
+	    WHERE no=#{no}
+	  </update>
+   */
+  public static void reserveOk(int no)
+  {
+	  try
+	  {
+		  SqlSession session=ssf.openSession(true);
+		  session.update("reserveOk",no);
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+  }
 }

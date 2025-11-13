@@ -101,4 +101,22 @@ public class ReserveDAO {
 		   ex.printStackTrace();
 	   }
    }
+   /*
+    *  <delete id="reserveCancel" parameterType="int">
+		   DELETE FROM reserve_info
+		   WHERE no=#{no}
+		  </delete>
+    */
+   public static void reserveCancel(int no)
+   {
+	   try
+	   {
+		   SqlSession session=ssf.openSession(true);
+		   session.delete("reserveCancel",no);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+   }
 }

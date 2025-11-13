@@ -85,6 +85,7 @@ public class JjimModel {
       }catch(Exception ex) {}
       
   }
+  
 }
 
 

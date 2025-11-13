@@ -15,4 +15,9 @@
     WHERE ri.fno=mf.fno
     ORDER BY no DESC
   </select>
+  <update id="reserveOk" parameterType="int">
+    UPDATE reserve_info SET
+    ok=1
+    WHERE no=#{no}
+  </update>
 </mapper>

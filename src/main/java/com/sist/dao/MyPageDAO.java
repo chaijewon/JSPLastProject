@@ -38,4 +38,30 @@ public class MyPageDAO {
 	  }
 	  return list;
   }
+  /*
+   *   <select id="reserveOkData" resultMap="rMap"
+		   parameterType="int"
+		  >
+		    SELECT no,rday,ri.time,inwon,
+		           TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday,
+		           poster,name,address,phone,parking,score,type
+		    FROM reserve_info ri , menupan_food mf
+		    WHERE ri.fno=mf.fno
+		    AND no=#{no}
+		  </select>
+   */
+  public static ReserveVO reserveOkData(int no)
+  {
+	  ReserveVO vo=null;
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  vo=session.selectOne("reserveOkData",no);
+		  session.close();
+	  }catch(Exception ex) 
+	  {
+		  ex.printStackTrace();
+	  }
+	  return vo;
+  }
 }

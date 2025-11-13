@@ -36,7 +36,7 @@
 	          <td>${vo.inwon }</td>
 	          <td>
 	            <c:if test="${vo.ok==0 }">
-	              <a href="#" class="btn btn-xs btn-success">승인대기</a>
+	              <a href="../admin/reserve_ok.do?no=${vo.no }" class="btn btn-xs btn-success">승인대기</a>
 	            </c:if>
 	            <c:if test="${vo.ok==1 }">
 	              <span class="btn btn-xs btn-default">승인완료</span>
