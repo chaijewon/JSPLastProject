@@ -274,7 +274,10 @@ $(function(){
         <!-- 댓글  -->
         <h2>맛집 리뷰</h2>
         <c:if test="${rCount==0 }">
-          리뷰가 없습니다
+          <div class="text-center">
+            <h3>리뷰가 없습니다</h3>
+          </div>
+            
         </c:if>
         <c:if test="${rCount>0 }">
         <ul class="review-list">
@@ -289,7 +292,7 @@ $(function(){
 	          <c:if test="${sessionScope.id==rvo.id }">
 		          <div class="review-meta">
 		            <div><input type=button value="수정" class="btn-xs btn-primary"></div>
-		            <div><input type=button value="삭제" class="btn-xs btn-danger"></div>
+		            <div><a href="../review/review_delete.do?no=${rvo.no }&type=1&cno=${rvo.cno}&page=${page}" class="btn btn-xs btn-danger">삭제</a></div>
 		          </div>
 	          </c:if>
 	         </li>
@@ -297,9 +300,12 @@ $(function(){
         </ul>
         </c:if>
         <c:if test="${sessionScope.id!=null }">
-        <form class="review-form">
+        <form class="review-form" method="post" action="../review/review_insert.do">
+         <input type="hidden" name="cno" value="${vo.fno }">
+         <input type="hidden" name="page" value="${page }">
+         <input type="hidden" name="type" value="1">
          <input type=text name=msg placeholder="리뷰입력" required>
-         <button type="submin">등록</button>
+         <button type="submit">등록</button>
         </form>
        </c:if>
     </section>
