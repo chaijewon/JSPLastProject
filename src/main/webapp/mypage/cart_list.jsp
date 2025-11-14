@@ -26,23 +26,23 @@ $(function(){
           <th width="10%">등록일</th>
           <th width="20%"></th>
         </tr>
-        
+         <c:forEach var="vo" items="${cList }">
           <tr class="dataTr" >
-            <td width="10%"></td>
+            <td width="10%">${vo.no }</td>
             <td width="10%">
-              <img src="" style="width: 35px;height: 35px">
+              <img src="${vo.gvo.goods_poster }" style="width: 35px;height: 35px">
             </td>
-            <td width="20%"></td>
-            <td width="20%"></td>
-            <td width="10%"></td>
-            <td width="10%"></td>
+            <td width="20%">${vo.gvo.goods_name }</td>
+            <td width="20%">${vo.gvo.goods_price }</td>
+            <td width="10%">${vo.account }</td>
+            <td width="10%">${vo.dbday }</td>
             <td width="20%">
             
               <span class="btn btn-xs btn-default">결제</span>
               <a href="#" class="btn btn-xs btn-warning">취소</a>
             </td>
           </tr>
-        
+         </c:forEach>
       </table>
              
 	</div>
