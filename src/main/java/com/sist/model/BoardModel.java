@@ -35,6 +35,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class BoardModel {
    @RequestMapping("board/list.do")
+   // board_list(int page)
    public String board_list(HttpServletRequest request,
 		   HttpServletResponse response)
    {
@@ -73,7 +74,7 @@ public class BoardModel {
    public String board_insert_ok(HttpServletRequest request,
 		   HttpServletResponse response)
    {
-	   // %EC%9E%90%EB%B0%94
+	   // %EC%9E%90%EB%B0%94 
 	   // 자바
 	   try
 	   {

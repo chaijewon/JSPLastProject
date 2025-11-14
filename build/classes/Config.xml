@@ -6,6 +6,7 @@
   <properties resource="db.properties"/>
   <!-- 
       getConnection() / disConnection()
+      
    -->
   <typeAliases>
     <typeAlias type="com.sist.vo.FoodVO" alias="FoodVO"/>
@@ -42,5 +43,6 @@
     <mapper resource="com/sist/mapper/mypage-mapper.xml"/>
     <mapper resource="com/sist/mapper/admin-mapper.xml"/>
     <mapper resource="com/sist/mapper/review-mapper.xml"/>
+    <mapper resource="com/sist/mapper/cart-mapper.xml"/>
   </mappers>
 </configuration>
