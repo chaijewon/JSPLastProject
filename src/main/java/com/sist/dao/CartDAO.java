@@ -78,5 +78,22 @@ public class CartDAO {
 		  }
 		  return list;
 	  }
-	  
+	  /*
+	   *   <delete id="cartCancel" parameterType="int">
+			    DELETE FROM cart
+			    WHERE no=#{no}
+			  </delete>
+	   */
+	  public static void cartCancel(int no)
+	  {
+		  try
+		  {
+			  SqlSession session=ssf.openSession(true);
+			  session.delete("cartCancel",no);
+			  session.close();
+		  }catch(Exception ex)
+		  {
+			  ex.printStackTrace();
+		  }
+	  }
 }
