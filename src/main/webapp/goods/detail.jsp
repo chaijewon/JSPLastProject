@@ -72,11 +72,28 @@
   #buy:hover { background-color: #c0392b; }
   #go:hover { background-color: #7f8c8d; }
 </style>
+
+<link rel="stylesheet" href="../css/table.css">
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-function ok(cno,page)
-{
-	location.href="../goods/list.do?cno="+cno+"&page="+page
-}
+Shadowbox.init({
+	players:['iframe']
+})
+$(function(){
+	$('#buy').click(function(){
+		Shadowbox.open({
+			content:'../goods/cart.jsp',
+			player:'iframe',
+			width:960,
+			height:760,
+			title:'결제 정보'
+		})
+	})
+	
+})
 </script>
 </head>
 <body>

@@ -156,6 +156,13 @@ public class GoodsModel {
 	  request.setAttribute("main_jsp", "../goods/detail.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("goods/payment.do")
+  public String goods_payment(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  request.setAttribute("main_jsp", "../goods/payment.jsp");
+	  return "../main/main.jsp";
+  }
   
   
   
