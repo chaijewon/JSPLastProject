@@ -105,6 +105,10 @@ $(function(){
 		  return
 		}
 		
+		let account=$('#sel').val()
+		$('#account').val(account)
+		$('#frm').submit()
+		
 	})
 })
 function ok(cno,page)
@@ -192,7 +196,11 @@ function ok(cno,page)
           <tr>
             <td colspan="2" class="text-center">
              <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
-              <input type="button" value="장바구니" id="cart" class="btn" data-no="${vo.no }" >
+              <form method="post" action="../cart/cart_insert.do" id="frm">
+                <input type=hidden name="gno" id="gno" value="${vo.no}">
+                <input type=hidden name="account" id="account">
+                <input type="button" value="장바구니" id="cart" class="btn" data-no="${vo.no }" >
+              </form>
               <input type="button" value="바로구매" id="buy" class="btn">
              </c:if>
               <input type="button" value="목록" id="go" class="btn" onclick="ok(${cno},${page})">
