@@ -79,21 +79,38 @@
 <script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-Shadowbox.init({
-	players:['iframe']
-})
+let sel=0
 $(function(){
-	$('#buy').click(function(){
-		Shadowbox.open({
-			content:'../goods/cart.jsp',
-			player:'iframe',
-			width:960,
-			height:760,
-			title:'결제 정보'
-		})
+	$('#sel').change(function(){
+		let account=$('#sel').val()
+		if(account!=="수량 선택")
+		{
+		    
+		    sel=1
+		    let price=$('#title').attr("data-price");
+		    let total=Number(price)*Number(account)
+		    $('#total').text(total.toLocaleString()+"원")
+		}
+		else
+		{
+			 sel=0
+		}
+		
+		
 	})
-	
+	$('#cart').click(function(){
+		if(sel==0)
+		{
+		  alert("수량을 선택하세요!!");
+		  return
+		}
+		
+	})
 })
+function ok(cno,page)
+{
+	location.href="../goods/list.do?cno="+cno+"&page="+page
+}
 </script>
 </head>
 <body>
@@ -136,7 +153,7 @@ $(function(){
         <table class="table table-bordered">
           <tr>
             <td colspan="2" class="text-center">
-              <span id="title">${vo.goods_name}</span><br>
+              <span id="title" data-price="${vo.price }">${vo.goods_name}</span><br>
               <span id="sub">${vo.goods_sub}</span>
             </td>
           </tr>
@@ -174,8 +191,10 @@ $(function(){
           </tr>
           <tr>
             <td colspan="2" class="text-center">
-              <input type="button" value="장바구니" id="cart" class="btn">
+             <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
+              <input type="button" value="장바구니" id="cart" class="btn" data-no="${vo.no }" >
               <input type="button" value="바로구매" id="buy" class="btn">
+             </c:if>
               <input type="button" value="목록" id="go" class="btn" onclick="ok(${cno},${page})">
             </td>
           </tr>
