@@ -84,6 +84,20 @@ public class MemberDAO {
 	     WHERE id=#{id}
 	   </select>
    */
+  public static MemberVO memberInfoData(String id)
+  {
+	  MemberVO vo=null;
+	  try
+	  {
+		  SqlSession session=ssf.openSession();
+		  vo=session.selectOne("memberInfoData",id);
+		  session.close();
+	  }catch(Exception ex)
+	  {
+		  ex.printStackTrace();
+	  }
+	  return vo;
+  }
   public static MemberVO memberLogin(String id,String pwd)
   {
 	  MemberVO vo=new MemberVO();

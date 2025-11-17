@@ -187,30 +187,30 @@ body {
 
       <div class="form-group">
         <label>수취인</label>
-        <input type="text" placeholder="홍길동">
+        <input type="text" value="${mvo.name }">
       </div>
 
       <div class="form-group">
         <label>연락처</label>
-        <input type="text" placeholder="010-1234-5678">
+        <input type="text" value="${mvo.phone }">
       </div>
 
       <div class="form-group">
         <label>우편번호</label>
         <div class="zip-row">
-          <input type="text" placeholder="12345">
+          <input type="text" value="${mvo.post}">
           <button class="btn-small" type="button">검색</button>
         </div>
       </div>
 
       <div class="form-group">
         <label>주소</label>
-        <input type="text" placeholder="서울특별시 강남구 ...">
+        <input type="text" value="${mvo.addr1 }">
       </div>
 
       <div class="form-group">
         <label>상세주소</label>
-        <input type="text" placeholder="상세주소 입력">
+        <input type="text" value="${mvo.addr2 }">
       </div>
 
       <div class="form-group">
@@ -225,13 +225,19 @@ body {
     <h2>🧾 주문 요약</h2>
 
     <ul>
-      <li><span>상품 A</span><span>₩ 12,000</span></li>
-      <li><span>상품 B</span><span>₩ 8,000</span></li>
+      <li><span>${gvo.goods_name }</span><span>₩ ${gvo.goods_price }</span></li>
+      <li><span>
+         <img src="${gvo.goods_poster }"
+         style="width:100px;height: 100px">
+      </span></li>
+      <li><span id="buys" data-cont="${gvo.goods_name }(수량:${account})"
+        data-total="${total }"
+      >수량</span><span>${account }</span></li>
     </ul>
 
     <div class="summary-total">
       <span>총 결제금액</span>
-      <span>₩ 20,000</span>
+      <span>₩ ${total }원</span>
     </div>
 
     <button class="pay-btn">결제하기</button>

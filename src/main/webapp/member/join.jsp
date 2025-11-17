@@ -7,16 +7,14 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/table.css">
-<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+
 <style type="text/css">
  .join_row{
   margin: 0px auto;
   width: 900px;
 } 
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
-<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 <script type="text/javascript">
 Shadowbox.init({

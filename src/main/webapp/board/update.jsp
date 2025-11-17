@@ -10,7 +10,7 @@
 <style type="text/css">
 .board_row{
   margin: 0px auto;
-  max-width: 800px;
+  width: 900px;
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>

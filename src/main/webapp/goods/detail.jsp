@@ -80,6 +80,9 @@
 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 let sel=0
+Shadowbox.init({
+	players:['iframe']
+})
 $(function(){
 	$('#sel').change(function(){
 		let account=$('#sel').val()
@@ -109,6 +112,24 @@ $(function(){
 		$('#account').val(account)
 		$('#frm').submit()
 		
+	})
+	
+	$('#buy').click(function(){
+		if(sel==0)
+		{
+		  alert("수량을 선택하세요!!");
+		  return
+		}
+		
+		let account=$('#sel').val()
+		let gno=$('#gno').val()
+		Shadowbox.open({
+			content:'../goods/buy.do?gno='+gno+"&account="+account,
+			player:'iframe',
+			width:960,
+			height:750,
+			title:'결제 내역'
+		})
 	})
 })
 function ok(cno,page)
@@ -196,7 +217,7 @@ function ok(cno,page)
           <tr>
             <td colspan="2" class="text-center">
              <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
-              <form method="post" action="../cart/cart_insert.do" id="frm">
+              <form method="post" action="../cart/cart_insert.do" id="frm" style="display:inline;">
                 <input type=hidden name="gno" id="gno" value="${vo.no}">
                 <input type=hidden name="account" id="account">
                 <input type="button" value="장바구니" id="cart" class="btn" data-no="${vo.no }" >
