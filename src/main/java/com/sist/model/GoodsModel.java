@@ -237,7 +237,7 @@ public class GoodsModel {
 	  vo.setPrice(Integer.parseInt(price));
 	  
 	  // DB 연동 
-	  
+	  GoodsDAO.orderInsert(vo);
 	  /*
 	   *   웹 사이트 
 	   *   = 아이템 설정 

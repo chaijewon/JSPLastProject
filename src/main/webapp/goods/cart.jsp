@@ -193,6 +193,9 @@ function requestPay() {
         buyer_postcode: $('#post').val()
     }, function (rsp) { // callback
     	
+    	alert("구매가 완료되었습니다.\n마이페이지에서 확인하세요")
+    	//window.location.href="../mypage/buy_list.do"
+    	parent.Shadowbox.close()
    });
 }
 /*
@@ -211,7 +214,7 @@ $(function(){
 		$.ajax({
 			type:'post',
 			url:'../goods/buy_ok.do',
-			data:{"gno":gno,"account":accout,"price":price,
+			data:{"gno":gno,"account":account,"price":price,
 				 "post":post,"addr1":addr1,"addr2":addr2,
 				 "msg":msg},
 		    success:function(result)
