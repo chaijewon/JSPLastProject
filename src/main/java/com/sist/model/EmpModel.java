@@ -42,4 +42,35 @@ public class EmpModel {
 	  request.setAttribute("list", list);
 	  return "../emp/info.jsp";
   }
+  @RequestMapping("emp/delete.do")
+  public String delete_list(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  Map  map=new HashMap();
+	  map.put("table_name", "emp_1");
+	  List<EmpVO> list1=EmpDAO.empDeleteList(map);
+	  map.put("table_name", "emp_2");
+	  List<EmpVO> list2=EmpDAO.empDeleteList(map);
+	  map.put("table_name", "emp_3");
+	  List<EmpVO> list3=EmpDAO.empDeleteList(map);
+	  map.put("table_name", "emp_4");
+	  List<EmpVO> list4=EmpDAO.empDeleteList(map);
+	  map.put("table_name", "emp_5");
+	  List<EmpVO> list5=EmpDAO.empDeleteList(map);
+	  request.setAttribute("list1", list1);
+	  request.setAttribute("list2", list2);
+	  request.setAttribute("list3", list3);
+	  request.setAttribute("list4", list4);
+	  request.setAttribute("list5", list5);
+	  
+	  return "../emp/delete.jsp";
+  }
+  @RequestMapping("emp/all.do")
+  public String delete_all(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String empno=request.getParameter("empno");
+	  EmpDAO.allDelete(Integer.parseInt(empno));
+	  return "redirect:../emp/delete.do";
+  }
 }

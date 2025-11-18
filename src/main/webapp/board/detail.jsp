@@ -10,8 +10,10 @@
 <link rel="stylesheet" href="../css/table.css">
 <style>
 /* 전체 댓글 영역 */
-.board_row {
-  margin-top: 30px;
+.detail_row {
+  
+  margin: 0px auto;
+  width: 800px;
 }
 
 /* 기본 댓글 카드 */
@@ -241,7 +243,7 @@ $(function(){
     <!-- ****** Archive Area Start ****** -->
     <section class="archive-area section_padding_80">
         <div class="container">
-            <div class="row board_row">
+            <div class="row detail_row">
              <table class="table">
               <tr>
                <th width=20% class="text-center">번호</th>

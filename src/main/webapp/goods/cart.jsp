@@ -173,6 +173,64 @@ body {
   }
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+var IMP = window.IMP; 
+IMP.init("imp68206770"); 
+function requestPay() {
+    IMP.request_pay({
+        pg: "html5_inicis",
+        pay_method: "card",
+        merchant_uid: "ORD20180131-0000011",   // 주문번호
+        name: $('#buys').attr("data-cont") ,
+        amount: $('#buys').attr("data-total"),         // 숫자 타입
+        buyer_email: $('#buys').attr("data-email"),
+        buyer_name: $('#name').val(),
+        buyer_tel:$('#phone').val(),
+        buyer_addr: $('#addr1').val(),
+        buyer_postcode: $('#post').val()
+    }, function (rsp) { // callback
+    	
+   });
+}
+/*
+ *   private int gno,account,price;
+     private String id,name,post,addr1,addr2,msg
+ */
+$(function(){
+	$('.pay-btn').click(function(){
+		let gno=$('#buys').attr('data-no')
+		let account=$('#buys').attr("data-account")
+		let price=$('#buys').attr("data-price")
+		let post=$('#post').val()
+		let addr1=$('#addr1').val()
+		let addr2=$('#addr2').val()
+		let msg=$('#msg').val()
+		$.ajax({
+			type:'post',
+			url:'../goods/buy_ok.do',
+			data:{"gno":gno,"account":accout,"price":price,
+				 "post":post,"addr1":addr1,"addr2":addr2,
+				 "msg":msg},
+		    success:function(result)
+		    {
+		    	requestPay()
+		    }
+		})
+	})
+	
+	$('.btn-small').on('click',function(){
+		new daum.Postcode({
+			oncomplete:function(data){
+				$('#post').val(data.zonecode)
+				$('#addr1').val(data.address)
+			}
+		}).open()
+	})
+})
+</script>
 </head>
 
 <body>
@@ -187,35 +245,47 @@ body {
 
       <div class="form-group">
         <label>수취인</label>
-        <input type="text" value="${mvo.name }">
+        <input type="text" value="${mvo.name }"
+         id="name"
+        >
       </div>
 
       <div class="form-group">
         <label>연락처</label>
-        <input type="text" value="${mvo.phone }">
+        <input type="text" value="${mvo.phone }"
+         id="phone"
+        >
       </div>
 
       <div class="form-group">
         <label>우편번호</label>
         <div class="zip-row">
-          <input type="text" value="${mvo.post}">
+          <input type="text" value="${mvo.post}"
+           id="post"
+          >
           <button class="btn-small" type="button">검색</button>
         </div>
       </div>
 
       <div class="form-group">
         <label>주소</label>
-        <input type="text" value="${mvo.addr1 }">
+        <input type="text" value="${mvo.addr1 }"
+         id="addr1"
+        >
       </div>
 
       <div class="form-group">
         <label>상세주소</label>
-        <input type="text" value="${mvo.addr2 }">
+        <input type="text" value="${mvo.addr2 }"
+         id="addr2"
+        >
       </div>
 
       <div class="form-group">
         <label>배송메모</label>
-        <textarea rows="3" placeholder="예: 문 앞에 놓아주세요"></textarea>
+        <textarea rows="3" placeholder="예: 문 앞에 놓아주세요"
+         id="msg"
+        ></textarea>
       </div>
     </div>
   </div>
@@ -228,11 +298,13 @@ body {
       <li><span>${gvo.goods_name }</span><span>₩ ${gvo.goods_price }</span></li>
       <li><span>
          <img src="${gvo.goods_poster }"
-         style="width:100px;height: 100px">
+         style="width:350px;height: 200px">
       </span></li>
       <li><span id="buys" data-cont="${gvo.goods_name }(수량:${account})"
-        data-total="${total }"
-      >수량</span><span>${account }</span></li>
+        data-total="${total }" data-no="${gvo.no }"
+        data-email="${mvo.email}" data-account="${account }"
+        data-price="${gvo.goods_price }"
+      >수량</span><span>${account }개</span></li>
     </ul>
 
     <div class="summary-total">

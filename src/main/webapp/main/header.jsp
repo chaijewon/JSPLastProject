@@ -193,7 +193,7 @@ $(function(){
                                         <%-- 지도 이용 --%>
                                         <a class="dropdown-item" href="../board/list.do">자유게시판</a>
                                         <c:if test="${sessionScope.id!=null && sessionScope.admin=='n' }">
-                                        <a class="dropdown-item" href="single.html">묻고답하기</a>
+                                        <a class="dropdown-item" href="../qna/list.do">묻고답하기</a>
                                         <%-- 네이버 카페 / 블로그 : 형태소 분석 --%>
                                         <a class="dropdown-item" href="single.html">후기게시판</a>
                                         </c:if>

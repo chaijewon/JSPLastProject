@@ -66,4 +66,29 @@ public class EmpDAO {
 	   session.close();
 	   return list;
    }
+   /*
+    *    <select id="empDeleteList" resultType="com.sist.vo.EmpVO" parameterType="hashmap">
+    SELECT empno,ename,job,TO_CHAR(hiredate,'yyyy-mm-dd') as dbday, sal
+    FROM ${table_name}
+  </select>
+    */
+   public static List<EmpVO> empDeleteList(Map map)
+   {
+	   SqlSession session=ssf.openSession();
+	   List<EmpVO> list=session.selectList("empDeleteList",map);
+	   session.close();
+	   return list;
+   }
+   /*
+    *  <delete id="allDelete" parameterType="int">
+    */
+   public static void allDelete(int empno)
+   {
+	   try
+	   {
+	   SqlSession session=ssf.openSession(true);
+	   session.delete("allDelete",empno);
+	   session.close();
+	   }catch(Exception ex) {ex.printStackTrace();}
+   }
 }

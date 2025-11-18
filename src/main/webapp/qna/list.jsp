@@ -13,6 +13,24 @@
   margin: 0px auto;
   width: 900px;
 }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+.badge-no {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fde68a;
+}
+.badge-yes {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
 /* 테이블 헤더 전체 둥근형 */
 .table thead tr th:first-child {
     border-top-left-radius: 12px;
@@ -46,6 +64,64 @@
     text-decoration: underline;
     color: #8f6cef;
 }
+
+/* 상태 배지 */
+.badge-no {
+    background-color: #f7b5c2;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.badge-yes {
+    background-color: #96d7c6;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* 페이징 버튼 */
+.btn-pink {
+    background-color: #ff9ec7;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.btn-pink:hover {
+    background-color: #ff7ab3;
+}
+
+.btn-mint {
+    background-color: #82e0d4;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+.btn-mint:hover {
+    background-color: #5bd4c3;
+}
+
+/* 테이블 헤더 */
+.table th {
+    background: #f3f0ff;
+    border-bottom: 2px solid #d6d2ff;
+    color: #5b4fb2;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* 셀 */
+.table td {
+    vertical-align: middle !important;
+    font-size: 14px;
+}
+
 </style>
 </head>
 <body>
@@ -55,7 +131,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>자유게시판</h2>
+                        <h2>묻고 답하기</h2>
                     </div>
                 </div>
             </div>
@@ -80,30 +156,23 @@
     <section class="archive-area section_padding_80">
         <div class="container">
             <div class="row board_row">
-             
-	              <table class="table">
-	               <tr>
-	                 <td>
-	                  <a href="../board/insert.do" class="btn btn-mint btn-sm"><span class="glyphicon glyphicon-pencil"></span>새글</a>
-	                 </td>
-	               </tr>
-	              </table>
+            
 	              <table class="table table-hover">
 	               <thead>
 	                <tr>
 	                 <th class="text-center" width="10%">번호</th>
-	                 <th class="text-center" width="45%">제목</th>
+	                 <th class="text-center" width="35%">제목</th>
 	                 <th class="text-center" width="15%">이름</th>
 	                 <th class="text-center" width="20%">작성일</th>
 	                 <th class="text-center" width="10%">조회수</th>
+	                 <th class="text-center" width="10%">상태</th>
 	                </tr>
 	               </thead>
-	                <c:set var="count" value="${count }"/>
 	                <c:forEach var="vo" items="${list }">
 	                 <tr>
-	                  <td class="text-center" width="10%">${count}</td>
-	                  <td width="45%">
-	                   <a href="../board/detail.do?no=${vo.no }&page=${curpage}">${vo.subject }</a>
+	                  <td class="text-center" width="10%">${vo.no}</td>
+	                  <td width="15%">
+	                   <a href="#">${vo.subject }</a>
 	                   <c:if test="${today==vo.dbday }">
 	                    &nbsp;<sup><img src="../board/images/new.gif"></sup>
 	                   </c:if>
@@ -111,23 +180,22 @@
 	                  <td class="text-center" width="15%">${vo.name }</td>
 	                  <td class="text-center" width="20%">${vo.dbday }</td>
 	                  <td class="text-center" width="10%">${vo.hit }</td>
+	                  <c:if test="${vo.state==0 }">
+	                   <td class="text-center" width="10%"><span class="badge badge-no">대기</span></td>
+	                  </c:if>
+	                  <c:if test="${vo.state==1 }">
+	                   <td class="text-center" width="10%"><span class="badge badge-yes">완료</span></td>
+	                  </c:if>
 	                </tr>
-	                <c:set var="count" value="${count-1 }"/>
+	                
 	                </c:forEach>
 	              </table>
 	              <table class="table">
 	                <tr>
-	                 <td class="text-left">
-	                  <input type="checkbox" value="N" name="fd">이름
-	                  <input type="checkbox" value="S" name="fd">제목
-	                  <input type="checkbox" value="C" name="fd">내용
-	                  <input type=text size=15 name="ss" class="input-sm">
-	                  <input type=button class="btn-sm btn-pink" value="검색">
-	                 </td>
-	                 <td class="text-right">
-	                  <a href="../board/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-pink"><span class="glyphicon glyphicon-chevron-left"></span>이전</a>
+	                 <td class="text-center">
+	                  <a href="../qna/list.do?page=${curpage>1?curpage-1:curpage }" class="btn btn-sm btn-pink"><span class="glyphicon glyphicon-chevron-left"></span>이전</a>
 	                  ${curpage } page / ${totalpage } pages
-	                  <a href="../board/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-mint">다음<span class="glyphicon glyphicon-chevron-right"></span></a> 
+	                  <a href="../qna/list.do?page=${curpage<totalpage?curpage+1:curpage }" class="btn btn-sm btn-mint">다음<span class="glyphicon glyphicon-chevron-right"></span></a> 
 	                 </td>
 	                </tr>
 	              </table>

@@ -36,4 +36,23 @@
     SELECT * FROM ${goods}
     WHERE no=#{no}
   </select>
+  <!-- 
+        NO      NOT NULL NUMBER        
+		GNO              NUMBER        
+		ID               VARCHAR2(20)  
+		NAME    NOT NULL VARCHAR2(51)  
+		POST    NOT NULL VARCHAR2(10)  
+		ADDR1   NOT NULL VARCHAR2(100) 
+		ADDR2            VARCHAR2(100) 
+		MSG     NOT NULL CLOB          
+		ACCOUNT          NUMBER  
+		REGDATE 
+   -->
+   <insert id="orderInsert" parameterType="com.sist.vo.OrdersVO">
+    INSERT INTO mvcOrders VALUES(
+     order_no_seq.nextval,
+     #{gno},#{id},#{name},#{post},
+     #{addr1},#{addr2},#{msg},#{account},SYSDATE
+    )
+   </insert>
 </mapper>

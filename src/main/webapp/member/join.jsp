@@ -15,7 +15,6 @@
 } 
 </style>
 
-
 <script type="text/javascript">
 Shadowbox.init({
 	players:['iframe']
