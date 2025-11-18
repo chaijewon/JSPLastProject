@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function(){
+	$('.dataTr').hover(function(){
+		$(this).css("cursor","pointer")
+	})
+	$('.dataTr').click(function(){
+		let no=$(this).attr("data-no")
+		location.href="../mypage/buy_detail.do?no="+no
+	})
+})
+</script>
 </head>
 <body>
 <main class="mypage-main">

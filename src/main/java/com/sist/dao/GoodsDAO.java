@@ -140,4 +140,30 @@ public class GoodsDAO {
 	   }
 	   return list;
    }
+   /*
+    *   <select id="orderDetailData" parameterType="int"
+		    resultMap="orderMap"
+		   >
+		     SELECT mo.no,gno,goods_poster,goods_name,goods_price,
+		           account,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,
+		           name,addr1,addr2,post,msg
+		    FROM mvcOrders mo,goods_all ga
+		    WHERE mo.gno=ga.no
+		    AND mo.no=#{no}
+		   </select>
+    */
+   public static OrdersVO orderDetailData(int no)
+   {
+	   OrdersVO vo=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   vo=session.selectOne("orderDetailData",no);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return vo;
+   }
 }

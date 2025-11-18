@@ -81,4 +81,14 @@
     WHERE mo.gno=ga.no
     AND id=#{id}
    </select>
+   <select id="orderDetailData" parameterType="int"
+    resultMap="orderMap"
+   >
+     SELECT mo.no,gno,goods_poster,goods_name,goods_price,
+           account,TO_CHAR(regdate,'YYYY-MM-DD') as dbday,
+           name,addr1,addr2,post,msg
+    FROM mvcOrders mo,goods_all ga
+    WHERE mo.gno=ga.no
+    AND mo.no=#{no}
+   </select>
 </mapper>

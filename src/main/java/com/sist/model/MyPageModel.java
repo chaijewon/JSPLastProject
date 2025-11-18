@@ -87,5 +87,22 @@ public class MyPageModel {
 	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
 	  return "../main/main.jsp";
   }
+  @RequestMapping("mypage/buy_detail.do")
+  public String buy_detail(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  String no=request.getParameter("no");
+	  OrdersVO vo=GoodsDAO.orderDetailData(Integer.parseInt(no));
+	  String price=vo.getGvo().getGoods_price();
+	  price=price.replaceAll("[^0-9]", "");
+	  int total=vo.getAccount()*Integer.parseInt(price);
+	  request.setAttribute("total", total);
+	  request.setAttribute("vo", vo);
+	  request.setAttribute("mypage_jsp", 
+			     "../mypage/buy_detail.jsp");
+	  request.setAttribute("main_jsp", 
+			     "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
+  }
   
 }
