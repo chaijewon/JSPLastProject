@@ -115,4 +115,29 @@ public class GoodsDAO {
 		   ex.printStackTrace();
 	   }
    }
+   /*
+    *   <select id="orderListData" parameterType="string"
+	    resultMap="orderMap"
+	   >
+	    SELECT no,gno,goods_poster,goods_name,goods_price,
+	           account,TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+	    FROM mvcOrders mo,goods_all ga
+	    WHERE mo.gno=ga.no
+	    AND id=#{id}
+	   </select>
+    */
+   public static List<OrdersVO> orderListData(String id)
+   {
+	   List<OrdersVO> list=null;
+	   try
+	   {
+		   SqlSession session=ssf.openSession();
+		   list=session.selectList("orderListData",id);
+		   session.close();
+	   }catch(Exception ex)
+	   {
+		   ex.printStackTrace();
+	   }
+	   return list;
+   }
 }

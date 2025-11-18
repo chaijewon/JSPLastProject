@@ -55,4 +55,30 @@
      #{addr1},#{addr2},#{msg},#{account},SYSDATE
     )
    </insert>
+   <!-- 
+        while(rs.next())
+        {
+           OrdersVO vo=new OrdersVO()
+           vo.setNo(rs.getInt(1));
+              ===== no
+           vo.gvo.setGoods_poster(rs.getString(2))
+              ====================
+              gvo.goods_poster
+           
+        }
+    -->
+   <resultMap type="com.sist.vo.OrdersVO" id="orderMap">
+     <result column="goods_poster" property="gvo.goods_poster"/>
+     <result column="goods_name" property="gvo.goods_name"/>
+     <result column="goods_price" property="gvo.goods_price"/>
+   </resultMap>
+   <select id="orderListData" parameterType="string"
+    resultMap="orderMap"
+   >
+    SELECT mo.no,gno,goods_poster,goods_name,goods_price,
+           account,TO_CHAR(regdate,'YYYY-MM-DD') as dbday
+    FROM mvcOrders mo,goods_all ga
+    WHERE mo.gno=ga.no
+    AND id=#{id}
+   </select>
 </mapper>

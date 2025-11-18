@@ -7,10 +7,12 @@ import org.json.simple.JSONObject;
 
 import com.sist.controller.Controller;
 import com.sist.controller.RequestMapping;
+import com.sist.dao.GoodsDAO;
 import com.sist.dao.JjimDAO;
 import com.sist.dao.MyPageDAO;
 import com.sist.dao.ReserveDAO;
 import com.sist.vo.FoodVO;
+import com.sist.vo.OrdersVO;
 import com.sist.vo.ReserveVO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -72,6 +74,18 @@ public class MyPageModel {
     	  out.write(obj.toJSONString());
       }catch(Exception ex) {}
       
+  }
+  @RequestMapping("mypage/buy_list.do")
+  public String buy_list(HttpServletRequest request,
+		  HttpServletResponse response)
+  {
+	  HttpSession session=request.getSession();
+	  String id=(String)session.getAttribute("id");
+	  List<OrdersVO> list=GoodsDAO.orderListData(id);
+	  request.setAttribute("gList", list);
+	  request.setAttribute("mypage_jsp", "../mypage/buy_list.jsp");
+	  request.setAttribute("main_jsp", "../mypage/mypage_main.jsp");
+	  return "../main/main.jsp";
   }
   
 }
