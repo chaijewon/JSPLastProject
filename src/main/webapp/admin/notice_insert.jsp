@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 .notice-form-wrap {
-  max-width: 980px;
+  width: 980px;
   margin: 20px auto;
   padding: 24px;
   background: #fff;
@@ -88,13 +88,7 @@
   background: #1e4ed8;
 }
 
-/* 모바일 */
-@media (max-width: 640px) {
-  .notice-form-wrap {
-    margin: 12px;
-    padding: 18px;
-  }
-}
+
 
 </style>
 </head>
@@ -102,7 +96,10 @@
 <section class="notice-form-wrap">
   <h2 class="form-title">공지 등록</h2>
 
-  <form class="notice-form">
+  <form class="notice-form" method="post"
+   action="../admin/notice_insert_ok.do"
+   enctype="multipart/form-data"
+  >
     <!-- 공지 종류 -->
     <div class="form-row">
       <label class="label">공지 종류</label>
@@ -117,7 +114,7 @@
     <!-- 제목 -->
     <div class="form-row">
       <label class="label">제목</label>
-      <input type="text" name="title" class="input" required>
+      <input type="text" name="subject" class="input" required>
     </div>
 
     <!-- 내용 -->
