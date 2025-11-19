@@ -37,4 +37,17 @@
        수정 
        삭제 
     -->
+   <update id="noticeHitIncrement" parameterType="int">
+    UPDATE notice SET
+    hit=hit+1
+    WHERE no=#{no}
+   </update>
+   <select id="noticeDetailData" resultType="com.sist.vo.NoticeVO"
+    parameterType="int"
+   >
+     SELECT no,name,state,subject,content,hit,filename,filesize,filecount,
+            TO_CHAR(regdate,'YYYY-MM-DD HH24:MI:SS') as dbday
+     FROM notice
+     WHERE no=#{no}
+   </select>
 </mapper>

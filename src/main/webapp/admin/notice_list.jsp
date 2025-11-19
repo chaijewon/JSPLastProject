@@ -189,9 +189,9 @@
         </c:when>
       </c:choose>
       <tr>
-        <td>15</td>
+        <td>${vo.no }</td>
         <td><span class="badge badge-${vo.state }">${state }</span></td>
-        <td class="title-cell"><a href="../admin/notice_detail.do">${vo.subject }</a></td>
+        <td class="title-cell"><a href="../admin/notice_detail.do?no=${vo.no }">${vo.subject }</a></td>
         <td>${vo.name }</td>
         <td>${vo.dbday }</td>
         <td>${vo.hit }</td>
@@ -199,7 +199,9 @@
       </c:forEach>
       <tr>
        <td class="text-center">
+         <a href="../admin/notice_list.do?page=${curpage>1?curpage-1:curpage }">이전</a>
          ${curpage } page / ${totalpage } pages
+         <a href="../admin/notice_list.do?page=${curpage<totalpage?curpage+1:curpage }">다음</a>
        </td>
       </tr>
     </tbody>

@@ -185,6 +185,25 @@ public class AdminModel {
   @RequestMapping("admin/notice_detail.do")
   public String admin_notice_detail(HttpServletRequest request,HttpServletResponse response)
   {
+	  // <form> <a> , ajax 
+	  /*
+	   *   <a href=".do?no=1">
+	   *   <form action="">
+	   *               ---- 값을 받는다 
+	   *   => input / select / textarea
+	   *      | hidden 포함 
+	   *   ajax 
+	   *     => data:{"no":1} => ?no=1
+	   *   axios : Vue / React => fetch
+	   *           ----------- 화면 UI
+	   *     => params:{"no":1}
+	   */
+	  String no=request.getParameter("no");
+	  // 사용자가 선택해서 => 상세보기 요청 => no
+	  // DB 연동 
+	  NoticeVO vo=
+		NoticeDAO.noticeDetailData(Integer.parseInt(no));
+	  request.setAttribute("vo", vo);
 	  request.setAttribute("admin_jsp", "../admin/notice_detail.jsp");
 	  return "../admin/admin_main.jsp";
   }
