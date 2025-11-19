@@ -134,6 +134,7 @@ public class AdminModel {
 		   */
 		  String fn="";
 		  String fs="";
+		  int count=0;
 		  for(Part part:request.getParts())
 		  {
 			  if("images".equals(part.getName()) && part.getSize()>0)
@@ -152,7 +153,7 @@ public class AdminModel {
 				  File dbFile=new File(savePath);
 				  fn+=fileName+",";
 				  fs+=dbFile.length()+",";
-				  
+				  count++;
 			  }
 		  }
 		  
@@ -161,6 +162,7 @@ public class AdminModel {
 			  System.out.println("파일 업로드가 없습니다");
 			  vo.setFilename("");
 			  vo.setFilesize("");
+			  vo.setFilecount(0);
 		  }
 		  else
 		  {
@@ -168,8 +170,10 @@ public class AdminModel {
 			  fs=fs.substring(0,fs.lastIndexOf(","));
 			  vo.setFilename(fn);
 			  vo.setFilesize(fs);
+			  vo.setFilecount(count);
 			  System.out.println(fn);
 			  System.out.println(fs);
+			  
 		  }
 		  
 		  NoticeDAO.noticeInsert(vo);
