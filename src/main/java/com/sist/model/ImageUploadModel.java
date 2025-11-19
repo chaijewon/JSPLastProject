@@ -18,11 +18,7 @@ import jakarta.servlet.http.Part;
 
 import com.sist.vo.*;
 @Controller
-@MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024,  
-	    maxFileSize = 5 * 1024 * 1024L,   
-	    maxRequestSize = 20 * 1024 * 1024L 
-)
+
 public class ImageUploadModel {
   @RequestMapping("test/upload.do")
   public String test_upload(HttpServletRequest request,

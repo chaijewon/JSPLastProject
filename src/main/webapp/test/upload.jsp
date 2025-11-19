@@ -9,7 +9,7 @@
 <body>
   <h2>다중 이미지 업로드</h2>
   <form method="post" action="../test/upload_result.do" enctype="multipart/form-data">
-    <input type="file" name="images" multiple  required />
+    <input type="file" name="images" multiple />
     <button type="submit">업로드</button>
   </form>
 

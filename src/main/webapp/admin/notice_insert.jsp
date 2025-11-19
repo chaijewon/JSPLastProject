@@ -106,7 +106,7 @@
     <!-- 공지 종류 -->
     <div class="form-row">
       <label class="label">공지 종류</label>
-      <select name="type" class="input">
+      <select name="state" class="input">
         <option value="normal">일반</option>
         <option value="emergency">긴급</option>
         <option value="maintain">점검</option>
@@ -129,13 +129,15 @@
     <!-- 첨부파일 -->
     <div class="form-row">
       <label class="label">첨부파일</label>
-      <input type="file" name="file" class="input file-input">
+      <input type="file" name="images" class="input file-input"
+       multiple
+      >
     </div>
 
     <!-- 버튼 -->
     <div class="form-actions">
       <button type="submit" class="btn primary">등록</button>
-      <button type="reset" class="btn">초기화</button>
+      <button type="button" class="btn" onclick="javascript:history.back()">취소</button>
     </div>
   </form>
 </section>
