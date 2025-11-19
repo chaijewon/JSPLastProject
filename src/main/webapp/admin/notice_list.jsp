@@ -198,7 +198,7 @@
       </tr>
       </c:forEach>
       <tr>
-       <td class="text-center">
+       <td class="text-center" colspan="6">
          <a href="../admin/notice_list.do?page=${curpage>1?curpage-1:curpage }">이전</a>
          ${curpage } page / ${totalpage } pages
          <a href="../admin/notice_list.do?page=${curpage<totalpage?curpage+1:curpage }">다음</a>

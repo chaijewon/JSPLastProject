@@ -158,9 +158,7 @@
 
   <!-- 본문 -->
   <article class="detail-content">
-    <pre style="white-space: pre-wrap;">
-      
-    </pre>
+   <pre style="white-space: pre-wrap;">${vo.content }</pre>
   </article>
 
   <!-- 첨부파일 -->
@@ -171,7 +169,7 @@
 	     <c:forTokens items="${vo.filename }" delims=","
 	      var="files"
 	     >
-	      <li><a href="#">${files}</a></li>
+	      <li>${files}</li>
 	     </c:forTokens>
 	    </ul>
 	  </div>
